@@ -14,6 +14,23 @@ public class Basic {
 	String style_trim;
 	long true_market_value;
 	
+	public Basic(int vehicle_id, String make_name, String make_nickname, String model_name, String model_nickname,
+			int year, int style_id, String style_name, String submodel_body, String submodel_modelname,
+			String style_trim, long true_market_value) {
+		super();
+		this.vehicle_id = vehicle_id;
+		this.make_name = make_name;
+		this.make_nickname = make_nickname;
+		this.model_name = model_name;
+		this.model_nickname = model_nickname;
+		this.year = year;
+		this.style_id = style_id;
+		this.style_name = style_name;
+		this.submodel_body = submodel_body;
+		this.submodel_modelname = submodel_modelname;
+		this.style_trim = style_trim;
+		this.true_market_value = true_market_value;
+	}
 	public int getVehicle_id() {
 		return vehicle_id;
 	}
