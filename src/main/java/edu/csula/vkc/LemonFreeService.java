@@ -101,7 +101,7 @@ public class LemonFreeService {
 		JsonNode responseLocationsbyMake = null;
 		try {
 			responseLocationsbyMake = Unirest
-					.get("http://api.lemonfree.com/v2/locations/?make=Toyota&key=07859aa5804ac8c1425bdb703ca961ed")
+					.get("http://api.lemonfree.com/v2/locations/?make=Toyota&format=json&key=07859aa5804ac8c1425bdb703ca961ed")
 					.asJson().getBody();
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
