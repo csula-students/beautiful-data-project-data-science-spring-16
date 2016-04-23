@@ -1,6 +1,7 @@
 package edu.csula.vkc.models;
 
 public class Basic {
+	
 	int vehicle_id;
 	String make_name;
 	String make_nickname;
