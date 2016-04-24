@@ -1,51 +1,115 @@
 package edu.csula.vkc.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class model {
 	int model_id;
 	String model;
 	String vehicle_type;
 	int no_of_Cylinder;
+	String engine_location;
 	String transmission;
 	String drive_system;
-	double price;
-	List<trim> trimList = new ArrayList<>();
-
+	String fuel_type;
+	
+	
 	public model() {
 		super();
 	}
 
-	public model(int model_id, String model, List<trim> trimList) {
+	
+	public model(int model_id, String model, String vehicle_type, int no_of_Cylinder, String engine_location,
+			String transmission, String drive_system, String fuel_type) {
 		super();
 		this.model_id = model_id;
 		this.model = model;
-		this.trimList = trimList;
+		this.vehicle_type = vehicle_type;
+		this.no_of_Cylinder = no_of_Cylinder;
+		this.engine_location = engine_location;
+		this.transmission = transmission;
+		this.drive_system = drive_system;
+		this.fuel_type = fuel_type;
 	}
+
 
 	public int getModel_id() {
 		return model_id;
 	}
 
+
 	public void setModel_id(int model_id) {
 		this.model_id = model_id;
 	}
+
 
 	public String getModel() {
 		return model;
 	}
 
+
 	public void setModel(String model) {
 		this.model = model;
 	}
 
-	public List<trim> getTrimList() {
-		return trimList;
+
+	public String getVehicle_type() {
+		return vehicle_type;
 	}
 
-	public void setTrimList(List<trim> trimList) {
-		this.trimList = trimList;
+
+	public void setVehicle_type(String vehicle_type) {
+		this.vehicle_type = vehicle_type;
 	}
 
+
+	public int getNo_of_Cylinder() {
+		return no_of_Cylinder;
+	}
+
+
+	public void setNo_of_Cylinder(int no_of_Cylinder) {
+		this.no_of_Cylinder = no_of_Cylinder;
+	}
+
+
+	public String getEngine_location() {
+		return engine_location;
+	}
+
+
+	public void setEngine_location(String engine_location) {
+		this.engine_location = engine_location;
+	}
+
+
+	public String getTransmission() {
+		return transmission;
+	}
+
+
+	public void setTransmission(String transmission) {
+		this.transmission = transmission;
+	}
+
+
+	public String getDrive_system() {
+		return drive_system;
+	}
+
+
+	public void setDrive_system(String drive_system) {
+		this.drive_system = drive_system;
+	}
+
+
+	public String getFuel_type() {
+		return fuel_type;
+	}
+
+
+	public void setFuel_type(String fuel_type) {
+		this.fuel_type = fuel_type;
+	}
+	
+	
+
+	
 }

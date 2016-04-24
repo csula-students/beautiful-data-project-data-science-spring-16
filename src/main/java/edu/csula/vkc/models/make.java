@@ -1,7 +1,5 @@
 package edu.csula.vkc.models;
 
-import java.time.Year;
-import java.util.ArrayList;
 import java.util.List;
 
 public class make {
@@ -9,7 +7,7 @@ public class make {
 	long make_id;
 	String make;
 	String source;
-	List<Year> year;
+	List<year> year;
 	List<model> modelList;
 	
 	public make() {
@@ -17,8 +15,9 @@ public class make {
 	}
 
 	
-	public make(long vehicle_id, long make_id, String make, String source, List<Year> year, List<model> modelList,
-			long price) {
+	
+	public make(long vehicle_id, long make_id, String make, String source, List<edu.csula.vkc.models.year> year,
+			List<model> modelList) {
 		super();
 		this.vehicle_id = vehicle_id;
 		this.make_id = make_id;
@@ -29,16 +28,6 @@ public class make {
 	}
 
 
-
-	public List<Year> getYear() {
-		return year;
-	}
-
-
-
-	public void setYear(List<Year> year) {
-		this.year = year;
-	}
 
 	public long getVehicle_id() {
 		return vehicle_id;
@@ -56,6 +45,14 @@ public class make {
 		this.make_id = make_id;
 	}
 
+	public String getMake() {
+		return make;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
 	public String getSource() {
 		return source;
 	}
@@ -64,16 +61,12 @@ public class make {
 		this.source = source;
 	}
 
-	public void setMake_id(int make_id) {
-		this.make_id = make_id;
+	public List<year> getYear() {
+		return year;
 	}
 
-	public String getMake() {
-		return make;
-	}
-
-	public void setMake(String make) {
-		this.make = make;
+	public void setYear(List<year> year) {
+		this.year = year;
 	}
 
 	public List<model> getModelList() {
@@ -84,4 +77,8 @@ public class make {
 		this.modelList = modelList;
 	}
 
+	
+
+	
+	
 }
