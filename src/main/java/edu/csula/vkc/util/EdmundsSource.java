@@ -91,7 +91,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 
 					JsonNode carDetails = edmundsService.getCarDetails(make.getMake(), model.getModel(),
 							year.getYear());
-					System.out.print(make.getMake() + " " + make.getMake() + " " + year.getYear());
+					System.out.print(make.getMake() + " " + model.getModel() + " " + year.getYear());
 
 					if (carDetails.getObject().has("styles")) {
 						JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
