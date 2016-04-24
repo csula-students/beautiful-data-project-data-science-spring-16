@@ -58,7 +58,7 @@ public class EdmundsService {
 		return responseStyleID;
 	}
 	
-	public static JsonNode getCarDetailsByStyleID() {
+	public static JsonNode getCarDetails() {
 
 		JsonNode responseStyleID = null;
 		try {
