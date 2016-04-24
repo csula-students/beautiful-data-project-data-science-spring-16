@@ -6,6 +6,7 @@ public class Styles {
 	private String name;
 	private int numOfDoors;
 	private MPG mpg;
+	private Price price;
 	private String vehicalType;
 	private int noOfCylinder;
 	private String engineLocation;
@@ -100,6 +101,14 @@ public class Styles {
 
 	public void setTrim(String trim) {
 		this.trim = trim;
+	}
+
+	public Price getPrice() {
+		return price;
+	}
+
+	public void setPrice(Price price) {
+		this.price = price;
 	}
 
 }
