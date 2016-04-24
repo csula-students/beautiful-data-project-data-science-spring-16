@@ -1,6 +1,9 @@
 package edu.csula.vkc.models;
 
+import java.util.List;
+
 public class Model {
+	
 	long model_id;
 	String model;
 	String vehicle_type;
@@ -10,13 +13,14 @@ public class Model {
 	String drive_system;
 	String fuel_type;
 	long style_id;
+	List<Years> year;
 	
 	public Model() {
 		super();
 	}
 
 	public Model(long model_id, String model, String vehicle_type, int no_of_Cylinder, String engine_location,
-			String transmission, String drive_system, String fuel_type, long style_id) {
+			String transmission, String drive_system, String fuel_type, long style_id, List<Years> year) {
 		super();
 		this.model_id = model_id;
 		this.model = model;
@@ -27,6 +31,7 @@ public class Model {
 		this.drive_system = drive_system;
 		this.fuel_type = fuel_type;
 		this.style_id = style_id;
+		this.year = year;
 	}
 
 	public long getModel_id() {
@@ -101,10 +106,13 @@ public class Model {
 		this.style_id = style_id;
 	}
 
-	
-	
-	
-	
 
+	public List<Years> getYear() {
+		return year;
+	}
+
+	public void setYear(List<Years> year) {
+		this.year = year;
+	}
 	
 }
