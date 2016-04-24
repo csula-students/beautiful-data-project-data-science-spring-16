@@ -14,6 +14,7 @@ public class Styles {
 	private String driveSystem;
 	private String fuelType;
 	private String trim;
+	private long mileage;
 
 	public Styles(){
 		super();
@@ -132,6 +133,14 @@ public class Styles {
 
 	public void setPrice(Price price) {
 		this.price = price;
+	}
+
+	public long getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(long mileage) {
+		this.mileage = mileage;
 	}
 
 }
