@@ -4,7 +4,11 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import edu.csula.vkc.util.WriteToJson;
+
 public class EdmundsService {
+	
+	static WriteToJson writer = new WriteToJson();
 
 	public static JsonNode getMakes() {
 
@@ -13,6 +17,9 @@ public class EdmundsService {
 			responseMake = Unirest
 					.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
 					.asJson().getBody();
+			
+			writer.writeNewFile("Edmunds", "Makes", responseMake);
+			
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
