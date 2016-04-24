@@ -3,17 +3,16 @@ package edu.csula.vkc.models;
 public class Price {
 
 	private long priceId;
-	private String usedTradeIn;
-	private String usedTmvRetail;
+	private double usedTradeIn;
+	private double usedTmvRetail;
 
 	public Price() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Price(long priceId, String usedTradeIn, String usedTmvRetail) {
+	public Price( double usedTradeIn, double usedTmvRetail) {
 		super();
-		this.priceId = priceId;
 		this.usedTradeIn = usedTradeIn;
 		this.usedTmvRetail = usedTmvRetail;
 	}
@@ -26,19 +25,19 @@ public class Price {
 		this.priceId = priceId;
 	}
 
-	public String getUsedTradeIn() {
+	public double getUsedTradeIn() {
 		return usedTradeIn;
 	}
 
-	public void setUsedTradeIn(String usedTradeIn) {
+	public void setUsedTradeIn(double usedTradeIn) {
 		this.usedTradeIn = usedTradeIn;
 	}
 
-	public String getUsedTmvRetail() {
+	public double getUsedTmvRetail() {
 		return usedTmvRetail;
 	}
 
-	public void setUsedTmvRetail(String usedTmvRetail) {
+	public void setUsedTmvRetail(double usedTmvRetail) {
 		this.usedTmvRetail = usedTmvRetail;
 	}
 

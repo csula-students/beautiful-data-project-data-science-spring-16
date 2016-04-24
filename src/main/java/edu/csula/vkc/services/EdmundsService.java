@@ -9,13 +9,19 @@ import edu.csula.vkc.util.WriteToJson;
 public class EdmundsService {
 	
 	static WriteToJson writer = new WriteToJson();
+	
+	static String keyKuntal = "9czdpmae3rqxgx27hp5p9qt5";
+	static String keyKuntal2 = "qe3x5dhwfdvk3be6887pkjgm";
+	static String keyChitta = "uwdpgeujhycxxbrfubjmk8jr";
+
+	static int round =0;
 
 	public static JsonNode getMakes() {
 
 		JsonNode responseMake = null;
 		try {
 			responseMake = Unirest
-					.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
+					.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key="+getKey())
 					.asJson().getBody();
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
@@ -30,7 +36,7 @@ public class EdmundsService {
 		JsonNode responseCarDetails = null;
 		try {
 			responseCarDetails = Unirest
-					.get("https://api.edmunds.com/api/vehicle/v2/"+strMake+"/"+strModel+"/"+strYear+"/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5&view=full")
+					.get("https://api.edmunds.com/api/vehicle/v2/"+strMake+"/"+strModel+"/"+strYear+"/styles?fmt=json&api_key="+getKey()+"&view=full")
 					.asJson().getBody();
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
@@ -38,6 +44,18 @@ public class EdmundsService {
 		}
 
 		return responseCarDetails;
+	}
+	
+	private static String getKey(){
+		String useKey = keyKuntal;
+		if(round%2==0){
+			useKey = keyKuntal2;
+		}else{
+			useKey = keyChitta;
+		}
+		
+			round++;
+		return useKey;
 	}
 
 //	public static JsonNode getModelandYear() {
