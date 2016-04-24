@@ -14,7 +14,7 @@ public class CarMetadata {
 	String submodel_modelname;
 	String style_trim;
 	long true_market_value;
-	
+	//test
 	public CarMetadata(){
 		super();
 	}
