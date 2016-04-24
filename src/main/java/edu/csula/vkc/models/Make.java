@@ -3,32 +3,32 @@ package edu.csula.vkc.models;
 import java.util.List;
 
 public class Make {
-	long vehicle_id;
-	long make_id;
-	String make;
-	String source;
-	List<Model> modelList;
+	private long id;
+	private long make_id;
+	private String make;
+	private String source;
+	private List<Model> modelList;
 	
 	public Make() {
 		super();
 	}
 
-	public Make(long vehicle_id, long make_id, String make, String source, 
+	public Make(long id, long make_id, String make, String source, 
 			List<Model> modelList) {
 		super();
-		this.vehicle_id = vehicle_id;
+		this.id = id;
 		this.make_id = make_id;
 		this.make = make;
 		this.source = source;
 		this.modelList = modelList;
 	}
 
-	public long getVehicle_id() {
-		return vehicle_id;
+	public long getId() {
+		return id;
 	}
 
-	public void setVehicle_id(long vehicle_id) {
-		this.vehicle_id = vehicle_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public long getMake_id() {
@@ -61,10 +61,5 @@ public class Make {
 
 	public void setModelList(List<Model> modelList) {
 		this.modelList = modelList;
-	}
-
-	
-
-	
-	
+	}	
 }
