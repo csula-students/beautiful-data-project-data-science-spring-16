@@ -52,9 +52,9 @@ public class GenericCollector implements Collector<Make, Make> {
 
 			Document document = new Document();
 
-			document.put("make_id", carMetadata.getMake_id());
-			document.put("make_name", carMetadata.getMake());
-			// document.put("vehical_id", carMetadata.getVehicle_id());
+			//document.put("make_id", carMetadata.getMake_id());
+			//document.put("make_name", carMetadata.getMake());
+			//document.put("vehical_id", carMetadata.getVehicle_id());
 			// document.put("model_nickname", carMetadata.getModel_name());
 			// document.put("style_id", carMetadata.getStyle_id());
 
