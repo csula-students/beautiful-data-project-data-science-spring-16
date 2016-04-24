@@ -1,17 +1,17 @@
 package edu.csula.vkc.models;
 
-public class trim {
+public class Trim {
 
 	int trim_id;
 	String trim;
 	double price;
 	String milage;
-	public trim() {
+	public Trim() {
 		super();
 	}
 	
 	
-	public trim(int trim_id, String trim, double price, String milage) {
+	public Trim(int trim_id, String trim, double price, String milage) {
 		super();
 		this.trim_id = trim_id;
 		this.trim = trim;

@@ -1,15 +1,15 @@
 package edu.csula.vkc.models;
 
-import java.time.Year;
+
 import java.util.List;
 
-public class year {
+public class Years {
 	int year_id;
-	Year year;
-	List<trim> trimList;
+	Years year;
+	List<Trim> trimList;
 	
 	
-	public year(int year_id, Year year, List<trim> trimList) {
+	public Years(int year_id, Years year, List<Trim> trimList) {
 		super();
 		this.year_id = year_id;
 		this.year = year;
@@ -27,22 +27,22 @@ public class year {
 	}
 
 
-	public Year getYear() {
+	public Years getYear() {
 		return year;
 	}
 
 
-	public void setYear(Year year) {
+	public void setYear(Years year) {
 		this.year = year;
 	}
 
 
-	public List<trim> getTrimList() {
+	public List<Trim> getTrimList() {
 		return trimList;
 	}
 
 
-	public void setTrimList(List<trim> trimList) {
+	public void setTrimList(List<Trim> trimList) {
 		this.trimList = trimList;
 	}
 	

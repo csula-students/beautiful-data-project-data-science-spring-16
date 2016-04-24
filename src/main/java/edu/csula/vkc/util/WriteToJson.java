@@ -13,7 +13,7 @@ import com.mongodb.util.JSON;
 
 public class WriteToJson {
 	
-	String location = "C:\\Users\\chitt_000\\Documents\\";
+	String location = "C:\\Users\\vidus\\Documents\\";
 	
 	String folderForData = "data-science-2016\\";
 

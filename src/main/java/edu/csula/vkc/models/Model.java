@@ -1,6 +1,6 @@
 package edu.csula.vkc.models;
 
-public class model {
+public class Model {
 	int model_id;
 	String model;
 	String vehicle_type;
@@ -11,12 +11,12 @@ public class model {
 	String fuel_type;
 	
 	
-	public model() {
+	public Model() {
 		super();
 	}
 
 	
-	public model(int model_id, String model, String vehicle_type, int no_of_Cylinder, String engine_location,
+	public Model(int model_id, String model, String vehicle_type, int no_of_Cylinder, String engine_location,
 			String transmission, String drive_system, String fuel_type) {
 		super();
 		this.model_id = model_id;

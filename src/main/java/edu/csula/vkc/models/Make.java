@@ -2,22 +2,22 @@ package edu.csula.vkc.models;
 
 import java.util.List;
 
-public class make {
+public class Make {
 	long vehicle_id;
 	long make_id;
 	String make;
 	String source;
-	List<year> year;
-	List<model> modelList;
+	List<Years> year;
+	List<Model> modelList;
 	
-	public make() {
+	public Make() {
 		super();
 	}
 
 	
 	
-	public make(long vehicle_id, long make_id, String make, String source, List<edu.csula.vkc.models.year> year,
-			List<model> modelList) {
+	public Make(long vehicle_id, long make_id, String make, String source, List<edu.csula.vkc.models.Years> year,
+			List<Model> modelList) {
 		super();
 		this.vehicle_id = vehicle_id;
 		this.make_id = make_id;
@@ -61,19 +61,19 @@ public class make {
 		this.source = source;
 	}
 
-	public List<year> getYear() {
+	public List<Years> getYear() {
 		return year;
 	}
 
-	public void setYear(List<year> year) {
+	public void setYear(List<Years> year) {
 		this.year = year;
 	}
 
-	public List<model> getModelList() {
+	public List<Model> getModelList() {
 		return modelList;
 	}
 
-	public void setModelList(List<model> modelList) {
+	public void setModelList(List<Model> modelList) {
 		this.modelList = modelList;
 	}
 
