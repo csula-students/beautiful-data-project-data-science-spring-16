@@ -7,7 +7,7 @@ import edu.csula.vkc.services.LemonFreeService;
 public class LemonFreeApp {
 	public static void main(String[] args) {
 
-		JsonNode carMakes = LemonFreeService.getMakes();
+	/*	JsonNode carMakes = LemonFreeService.getMakes();
 
 		System.out.println("getMakes response-->" + carMakes);
 
@@ -34,10 +34,10 @@ public class LemonFreeApp {
 		JsonNode carLocationsbyMake = LemonFreeService.getLocationsbyMake();
 
 		System.out.println("getLocationsbyMake response-->" + carLocationsbyMake);
+*/
+		//JsonNode carListingsbyMakeAndModel = LemonFreeService.getListingsbyMakeAndModel();
 
-		JsonNode carListingsbyMakeAndModel = LemonFreeService.getListingsbyMakeAndModel();
-
-		System.out.println("getListingsbyMakeAndModel response-->" + carListingsbyMakeAndModel);
+		//System.out.println("getListingsbyMakeAndModel response-->" + carListingsbyMakeAndModel);
 
 	}
 }
