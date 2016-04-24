@@ -4,24 +4,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.google.common.collect.Lists;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.ObjectMapper;
-import com.mongodb.util.JSON;
+import edu.csula.vkc.models.Make;
 
 public class WriteToJson {
 	
-	String location = "C:\\Users\\vidus\\Documents\\";
+	private String location = "C:\\Users\\chitt_000\\Documents\\";
 	
-	String folderForData = "data-science-2016\\";
+	private String folderForData = "data-science-2016\\";
 
-	public boolean writeNewFile(String serviceName, String dataType,JsonNode data) {
+	public boolean writeNewFile(String serviceName, List<Make> make) {
 
 		try {
 
-			File f = new File(location + folderForData + serviceName +"."+ dataType +".json");
+			File f = new File(location + folderForData + serviceName +".json");
 			
 			if (f.exists())
 			{
@@ -32,16 +29,16 @@ public class WriteToJson {
 		        System.out.println("File Created.");
 		    }
 			
-			//Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-			/*JsonFactory factory = new JsonFactory();
-			ObjectMapper mapper = new ObjectMapper(factory);*/
+			ObjectMapper mapper = new ObjectMapper();
 			
-			System.out.println(data.toString());
+			System.out.println(make.get(0).getModelList().get(0).getModel().toString());
+			
+			//System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(make));
 			
 			//JSONObject array = new JSONObject(data.toString());
 
-			FileWriter file = new FileWriter(location + folderForData + serviceName +"."+ dataType +".json");
-			file.write(data.toString());
+			FileWriter file = new FileWriter(location + folderForData + serviceName +".json");
+			file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(make));
 			file.flush();
 			file.close();
 			
