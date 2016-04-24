@@ -1,6 +1,6 @@
 package edu.csula.vkc.models;
 
-public class Basic {
+public class CarMetadata {
 	
 	int vehicle_id;
 	String make_name;
@@ -15,11 +15,11 @@ public class Basic {
 	String style_trim;
 	long true_market_value;
 	
-	public Basic(){
+	public CarMetadata(){
 		super();
 	}
 	
-	public Basic(int vehicle_id, String make_name, String make_nickname, String model_name, String model_nickname,
+	public CarMetadata(int vehicle_id, String make_name, String make_nickname, String model_name, String model_nickname,
 			int year, int style_id, String style_name, String submodel_body, String submodel_modelname,
 			String style_trim, long true_market_value) {
 		super();

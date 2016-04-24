@@ -1,4 +1,4 @@
-package edu.csula.vkc;
+package edu.csula.vkc.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,9 +13,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
-import edu.csula.vkc.models.Basic;
+import edu.csula.vkc.models.CarMetadata;
 
-public class GenericCollector implements Collector<Basic, Basic> {
+public class GenericCollector implements Collector<CarMetadata, CarMetadata> {
 
 	MongoClient mongoClient;
 	MongoDatabase database;
@@ -34,7 +34,7 @@ public class GenericCollector implements Collector<Basic, Basic> {
 	}
 
 	@Override
-	public Collection<Basic> mungee(Collection<Basic> src) {
+	public Collection<CarMetadata> mungee(Collection<CarMetadata> src) {
 
 		// Add code to filter the data received
 
@@ -42,19 +42,19 @@ public class GenericCollector implements Collector<Basic, Basic> {
 	}
 
 	@Override
-	public void save(Collection<Basic> data) {
+	public void save(Collection<CarMetadata> data) {
 		
 		List<Document> listDocuments = Lists.newArrayList();
 
-		for (Basic basic : data) {
+		for (CarMetadata carMetadata : data) {
 
 			Document document = new Document();
 
-			document.put("make_name", basic.getMake_name());
-			document.put("make_nickname", basic.getMake_nickname());
-			document.put("model_name", basic.getModel_name());
-			document.put("model_nickname", basic.getModel_name());
-			document.put("style_id", basic.getStyle_id());
+			document.put("make_name", carMetadata.getMake_name());
+			document.put("make_nickname", carMetadata.getMake_nickname());
+			document.put("model_name", carMetadata.getModel_name());
+			document.put("model_nickname", carMetadata.getModel_name());
+			document.put("style_id", carMetadata.getStyle_id());
 
 			listDocuments.add(document);
 		}

@@ -1,6 +1,8 @@
-package edu.csula.vkc;
+package edu.csula.vkc.apps;
 
 import com.mashape.unirest.http.JsonNode;
+
+import edu.csula.vkc.services.EdmundsService;
 
 public class EdmundsServiceApp {
 
