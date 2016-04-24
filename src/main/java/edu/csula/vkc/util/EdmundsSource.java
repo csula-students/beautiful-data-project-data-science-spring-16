@@ -16,8 +16,11 @@ import com.sun.media.jfxmediaimpl.MarkerStateListener;
 
 import edu.csula.datascience.acquisition.Source;
 import edu.csula.vkc.models.CarMetadata;
+import edu.csula.vkc.models.MPG;
 import edu.csula.vkc.models.Make;
 import edu.csula.vkc.models.Model;
+import edu.csula.vkc.models.Price;
+import edu.csula.vkc.models.Styles;
 import edu.csula.vkc.models.Years;
 import edu.csula.vkc.services.EdmundsService;
 
@@ -46,6 +49,7 @@ public class EdmundsSource implements Source<CarMetadata>{
 		//System.out.println(test);
 		//System.out.println(arrayMakes);
 		
+		//Code for Make Retival
 		for(int i =0; i<arrayMakes.length();i++){
 			JSONObject jsonMake = arrayMakes.getJSONObject(i);
 			Make make = new Make();
@@ -60,6 +64,7 @@ public class EdmundsSource implements Source<CarMetadata>{
 			JSONArray arrayModels = jsonMake.getJSONArray("models");
 			List<Model> listModels = Lists.newArrayList();
 			
+			//Code to retrive Models from Make.
 			for(int j=0;j<arrayModels.length();j++){
 				JSONObject jsonModel = arrayModels.getJSONObject(j);
 				
@@ -74,6 +79,7 @@ public class EdmundsSource implements Source<CarMetadata>{
 				JSONArray arrayYears = jsonModel.getJSONArray("years");
 				List<Years> listYears = Lists.newArrayList();
 				
+				//Code for getting Years form Make>Models.
 				for(int k=0;k<arrayYears.length();k++){
 					JSONObject jsonYear = arrayYears.getJSONObject(k);
 					
@@ -83,8 +89,29 @@ public class EdmundsSource implements Source<CarMetadata>{
 					year.setYear(jsonYear.get("year").toString());
 					
 					JsonNode carDetails = edmundsService.getCarDetails(make.getMake(), model.getModel(), year.getYear());
+					System.out.println(make.getMake() + " " + make.getMake() +" " +year.getYear());
 					
-					JSONArray arrayDetails = (JSONArray) carMakes.getObject().get("styles");
+
+					JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
+					List<Styles> listStyles = Lists.newArrayList();
+					
+					for(int l=0;l<arrayStyles.length();l++){
+						JSONObject jsonStyle = arrayStyles.getJSONObject(l);
+						Styles style = new Styles();
+						
+						MPG mpg = new MPG();
+						Price price = new Price();
+						
+						style.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels"): null);						
+						style.setNumOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors"): null);
+						style.setTrim(jsonStyle.has("trim")? jsonStyle.getString("trim"):null);
+						style.setName(jsonStyle.has("name")? jsonStyle.getString("name"):null);
+						style.setStyleId(jsonStyle.has("id")? jsonStyle.getLong("id"):null);
+						style.setMpg(mpg);
+						
+						listStyles.add(style);
+						Thread.sleep(50);
+					}
 					
 					listYears.add(year);
 				}
@@ -98,8 +125,7 @@ public class EdmundsSource implements Source<CarMetadata>{
 			listMake.add(make);
 		}
 
-		WriteToJson writer = new WriteToJson();
-		writer.writeNewFile("Edmunds", listMake);
+		
 		
 		return null;
 	}
