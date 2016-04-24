@@ -1,42 +1,37 @@
 package edu.csula.vkc.models;
 
-public class Styles {
+public class Styles9 {
 
 	private long styleId;
 	private String name;
 	private int numOfDoors;
-	private MPG mpg;
-	private Price price;
+	// no mpg
+	private Price9 price;
 	private String vehicalType;
 	private int noOfCylinder;
 	private String engineLocation;
-	private String transmission;
 	private String driveSystem;
-	private String fuelType;
+	//no fueltype feild
 	private String trim;
 
-	public Styles(){
+	public Styles9(){
 		super();
 	}
 	
-	
-	public Styles(long styleId, String name, int numOfDoors, MPG mpg, Price price, String vehicalType, int noOfCylinder,
-			String engineLocation, String transmission, String driveSystem, String fuelType, String trim) {
+	public Styles9(long styleId, String name, int numOfDoors, Price9 price, String vehicalType,
+			int noOfCylinder, String engineLocation, String driveSystem, String trim) {
 		super();
 		this.styleId = styleId;
 		this.name = name;
 		this.numOfDoors = numOfDoors;
-		this.mpg = mpg;
+	
 		this.price = price;
 		this.vehicalType = vehicalType;
 		this.noOfCylinder = noOfCylinder;
 		this.engineLocation = engineLocation;
-		this.transmission = transmission;
 		this.driveSystem = driveSystem;
-		this.fuelType = fuelType;
 		this.trim = trim;
 	}
-
 
 	public long getStyleId() {
 		return styleId;
@@ -62,12 +57,13 @@ public class Styles {
 		this.numOfDoors = numOfDoors;
 	}
 
-	public MPG getMpg() {
-		return mpg;
+	
+	public Price9 getPrice() {
+		return price;
 	}
 
-	public void setMpg(MPG mpg) {
-		this.mpg = mpg;
+	public void setPrice(Price9 price) {
+		this.price = price;
 	}
 
 	public String getVehicalType() {
@@ -94,28 +90,12 @@ public class Styles {
 		this.engineLocation = engineLocation;
 	}
 
-	public String getTransmission() {
-		return transmission;
-	}
-
-	public void setTransmission(String transmission) {
-		this.transmission = transmission;
-	}
-
 	public String getDriveSystem() {
 		return driveSystem;
 	}
 
 	public void setDriveSystem(String driveSystem) {
 		this.driveSystem = driveSystem;
-	}
-
-	public String getFuelType() {
-		return fuelType;
-	}
-
-	public void setFuelType(String fuelType) {
-		this.fuelType = fuelType;
 	}
 
 	public String getTrim() {
@@ -126,12 +106,7 @@ public class Styles {
 		this.trim = trim;
 	}
 
-	public Price getPrice() {
-		return price;
-	}
 
-	public void setPrice(Price price) {
-		this.price = price;
-	}
+
 
 }

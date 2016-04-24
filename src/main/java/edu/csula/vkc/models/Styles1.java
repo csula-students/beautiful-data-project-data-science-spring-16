@@ -1,12 +1,12 @@
 package edu.csula.vkc.models;
 
-public class Styles {
+public class Styles1 {
 
 	private long styleId;
 	private String name;
 	private int numOfDoors;
-	private MPG mpg;
-	private Price price;
+	private MPG1 mpg;
+	private Price1 price;
 	private String vehicalType;
 	private int noOfCylinder;
 	private String engineLocation;
@@ -15,13 +15,14 @@ public class Styles {
 	private String fuelType;
 	private String trim;
 
-	public Styles(){
+	public Styles1() {
 		super();
+
 	}
-	
-	
-	public Styles(long styleId, String name, int numOfDoors, MPG mpg, Price price, String vehicalType, int noOfCylinder,
-			String engineLocation, String transmission, String driveSystem, String fuelType, String trim) {
+
+	public Styles1(long styleId, String name, int numOfDoors, MPG1 mpg, Price1 price, String vehicalType,
+			int noOfCylinder, String engineLocation, String transmission, String driveSystem, String fuelType,
+			String trim) {
 		super();
 		this.styleId = styleId;
 		this.name = name;
@@ -36,7 +37,6 @@ public class Styles {
 		this.fuelType = fuelType;
 		this.trim = trim;
 	}
-
 
 	public long getStyleId() {
 		return styleId;
@@ -62,11 +62,11 @@ public class Styles {
 		this.numOfDoors = numOfDoors;
 	}
 
-	public MPG getMpg() {
+	public MPG1 getMpg() {
 		return mpg;
 	}
 
-	public void setMpg(MPG mpg) {
+	public void setMpg(MPG1 mpg) {
 		this.mpg = mpg;
 	}
 
@@ -126,11 +126,11 @@ public class Styles {
 		this.trim = trim;
 	}
 
-	public Price getPrice() {
+	public Price1 getPrice() {
 		return price;
 	}
 
-	public void setPrice(Price price) {
+	public void setPrice(Price1 price) {
 		this.price = price;
 	}
 

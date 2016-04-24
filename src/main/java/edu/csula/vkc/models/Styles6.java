@@ -1,27 +1,27 @@
 package edu.csula.vkc.models;
 
-public class Styles {
+public class Styles6 {
 
 	private long styleId;
 	private String name;
 	private int numOfDoors;
-	private MPG mpg;
-	private Price price;
+	private MPG6 mpg;
+	private Price6 price;
 	private String vehicalType;
 	private int noOfCylinder;
 	private String engineLocation;
-	private String transmission;
 	private String driveSystem;
 	private String fuelType;
 	private String trim;
 
-	public Styles(){
+	public Styles6(){
 		super();
 	}
 	
 	
-	public Styles(long styleId, String name, int numOfDoors, MPG mpg, Price price, String vehicalType, int noOfCylinder,
-			String engineLocation, String transmission, String driveSystem, String fuelType, String trim) {
+	
+	public Styles6(long styleId, String name, int numOfDoors, MPG6 mpg, Price6 price, String vehicalType,
+			int noOfCylinder, String engineLocation, String driveSystem, String fuelType, String trim) {
 		super();
 		this.styleId = styleId;
 		this.name = name;
@@ -31,11 +31,11 @@ public class Styles {
 		this.vehicalType = vehicalType;
 		this.noOfCylinder = noOfCylinder;
 		this.engineLocation = engineLocation;
-		this.transmission = transmission;
 		this.driveSystem = driveSystem;
 		this.fuelType = fuelType;
 		this.trim = trim;
 	}
+
 
 
 	public long getStyleId() {
@@ -62,11 +62,11 @@ public class Styles {
 		this.numOfDoors = numOfDoors;
 	}
 
-	public MPG getMpg() {
+	public MPG6 getMpg() {
 		return mpg;
 	}
 
-	public void setMpg(MPG mpg) {
+	public void setMpg(MPG6 mpg) {
 		this.mpg = mpg;
 	}
 
@@ -94,14 +94,6 @@ public class Styles {
 		this.engineLocation = engineLocation;
 	}
 
-	public String getTransmission() {
-		return transmission;
-	}
-
-	public void setTransmission(String transmission) {
-		this.transmission = transmission;
-	}
-
 	public String getDriveSystem() {
 		return driveSystem;
 	}
@@ -126,11 +118,11 @@ public class Styles {
 		this.trim = trim;
 	}
 
-	public Price getPrice() {
+	public Price6 getPrice() {
 		return price;
 	}
 
-	public void setPrice(Price price) {
+	public void setPrice(Price6 price) {
 		this.price = price;
 	}
 
