@@ -51,7 +51,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 		WriteToJson writer = new WriteToJson();
 		
 		// Code for Make Retival
-		for (int i = 0; i < arrayMakes.length(); i++) {
+		for (int i = 58; i < arrayMakes.length(); i++) {
 			JSONObject jsonMake = arrayMakes.getJSONObject(i);
 			Make make = new Make();
 
@@ -141,7 +141,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 
 							listStyles.add(style);
 							Thread.sleep(500);
-							System.out.println(" Done.");
+							System.out.println(" "+style.getName());
 						}
 						
 						year.setStyles(listStyles);
