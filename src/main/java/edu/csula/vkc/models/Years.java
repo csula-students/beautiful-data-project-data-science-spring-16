@@ -4,19 +4,19 @@ import java.time.Year;
 import java.util.List;
 
 public class Years {
-	long year_id;
-	String year;
-	List<Trim> trimList;
+	private long year_id;
+	private String year;
+	private List<Styles> styles;
 	
 	public Years(){
 		super();
 	}
 
-	public Years(long year_id, String year, List<Trim> trimList) {
+	public Years(long year_id, String year, List<Styles> styles) {
 		super();
 		this.year_id = year_id;
 		this.year = year;
-		this.trimList = trimList;
+		this.styles = styles;
 	}
 
 	public long getYear_id() {
@@ -35,12 +35,12 @@ public class Years {
 		this.year = year;
 	}
 
-	public List<Trim> getTrimList() {
-		return trimList;
+	public List<Styles> getStyles() {
+		return styles;
 	}
 
-	public void setTrimList(List<Trim> trimList) {
-		this.trimList = trimList;
+	public void setStyles(List<Styles> styles) {
+		this.styles = styles;
 	}
 
 }
