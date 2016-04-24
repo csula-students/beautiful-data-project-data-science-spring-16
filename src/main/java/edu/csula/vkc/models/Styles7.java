@@ -1,28 +1,27 @@
 package edu.csula.vkc.models;
 
-public class Styles {
+public class Styles7 {
 
 	private long styleId;
 	private String name;
 	private int numOfDoors;
-	private MPG mpg;
-	private Price price;
+	private MPG7 mpg;
+	private Price7 price;
 	private String vehicalType;
-	private int noOfCylinder;
+//no no of cylinders feild
 	private String engineLocation;
-	private String transmission;
 	private String driveSystem;
 	private String fuelType;
 	private String trim;
-	private long mileage;
 
-	public Styles(){
+	public Styles7(){
 		super();
 	}
 	
 	
-	public Styles(long styleId, String name, int numOfDoors, MPG mpg, Price price, String vehicalType, int noOfCylinder,
-			String engineLocation, String transmission, String driveSystem, String fuelType, String trim) {
+	
+	public Styles7(long styleId, String name, int numOfDoors, MPG7 mpg, Price7 price, String vehicalType,
+			 String engineLocation, String driveSystem, String fuelType, String trim) {
 		super();
 		this.styleId = styleId;
 		this.name = name;
@@ -30,13 +29,12 @@ public class Styles {
 		this.mpg = mpg;
 		this.price = price;
 		this.vehicalType = vehicalType;
-		this.noOfCylinder = noOfCylinder;
 		this.engineLocation = engineLocation;
-		this.transmission = transmission;
 		this.driveSystem = driveSystem;
 		this.fuelType = fuelType;
 		this.trim = trim;
 	}
+
 
 
 	public long getStyleId() {
@@ -63,11 +61,11 @@ public class Styles {
 		this.numOfDoors = numOfDoors;
 	}
 
-	public MPG getMpg() {
+	public MPG7 getMpg() {
 		return mpg;
 	}
 
-	public void setMpg(MPG mpg) {
+	public void setMpg(MPG7 mpg) {
 		this.mpg = mpg;
 	}
 
@@ -79,28 +77,12 @@ public class Styles {
 		this.vehicalType = vehicalType;
 	}
 
-	public int getNoOfCylinder() {
-		return noOfCylinder;
-	}
-
-	public void setNoOfCylinder(int noOfCylinder) {
-		this.noOfCylinder = noOfCylinder;
-	}
-
 	public String getEngineLocation() {
 		return engineLocation;
 	}
 
 	public void setEngineLocation(String engineLocation) {
 		this.engineLocation = engineLocation;
-	}
-
-	public String getTransmission() {
-		return transmission;
-	}
-
-	public void setTransmission(String transmission) {
-		this.transmission = transmission;
 	}
 
 	public String getDriveSystem() {
@@ -127,20 +109,12 @@ public class Styles {
 		this.trim = trim;
 	}
 
-	public Price getPrice() {
+	public Price7 getPrice() {
 		return price;
 	}
 
-	public void setPrice(Price price) {
+	public void setPrice(Price7 price) {
 		this.price = price;
-	}
-
-	public long getMileage() {
-		return mileage;
-	}
-
-	public void setMileage(long mileage) {
-		this.mileage = mileage;
 	}
 
 }
