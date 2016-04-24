@@ -1,13 +1,18 @@
 package edu.csula.vkc.models;
 
+import java.time.Year;
 import java.util.List;
 
 public class Years {
 	long year_id;
-	Years year;
+	String year;
 	List<Trim> trimList;
+	
+	public Years(){
+		super();
+	}
 
-	public Years(long year_id, Years year, List<Trim> trimList) {
+	public Years(long year_id, String year, List<Trim> trimList) {
 		super();
 		this.year_id = year_id;
 		this.year = year;
@@ -22,11 +27,11 @@ public class Years {
 		this.year_id = year_id;
 	}
 
-	public Years getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Years year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
