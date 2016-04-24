@@ -24,51 +24,51 @@ public class EdmundsService {
 
 		return responseMake;
 	}
-
-	public static JsonNode getModelandYear() {
-
-		JsonNode responseModelandYear = null;
-		try {
-			responseModelandYear = Unirest
-					.get("https://api.edmunds.com/api/vehicle/v2/Acura/models?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
-					.asJson().getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return responseModelandYear;
-	}
-
-	public static JsonNode getStyleID() {
-
-		JsonNode responseStyleID = null;
-		try {
-			responseStyleID = Unirest
-					.get("https://api.edmunds.com/api/vehicle/v2/lexus/rx350/2011/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
-					.asJson().getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return responseStyleID;
-	}
 	
-	public static JsonNode getCarDetails() {
+	public static JsonNode getCarDetails(String strMake, String strModel, String strYear) {
 
-		JsonNode responseStyleID = null;
+		JsonNode responseCarDetails = null;
 		try {
-			responseStyleID = Unirest
-					.get("https://api.edmunds.com/api/vehicle/v2/lexus/rx350/2011/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5&view=full")
+			responseCarDetails = Unirest
+					.get("https://api.edmunds.com/api/vehicle/v2/"+strMake+"/"+strModel+"/"+strYear+"/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5&view=full")
 					.asJson().getBody();
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return responseStyleID;
+		return responseCarDetails;
 	}
+
+//	public static JsonNode getModelandYear() {
+//
+//		JsonNode responseModelandYear = null;
+//		try {
+//			responseModelandYear = Unirest
+//					.get("https://api.edmunds.com/api/vehicle/v2/Acura/models?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
+//					.asJson().getBody();
+//		} catch (UnirestException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return responseModelandYear;
+//	}
+
+//	public static JsonNode getStyleID() {
+//
+//		JsonNode responseStyleID = null;
+//		try {
+//			responseStyleID = Unirest
+//					.get("https://api.edmunds.com/api/vehicle/v2/lexus/rx350/2011/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
+//					.asJson().getBody();
+//		} catch (UnirestException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		return responseStyleID;
+//	}	
 	
 //	public static JsonNode getTCOPrice() {
 //

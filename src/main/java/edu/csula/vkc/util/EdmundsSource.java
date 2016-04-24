@@ -39,9 +39,9 @@ public class EdmundsSource implements Source<CarMetadata>{
 		
 		EdmundsService edmundsService = new EdmundsService();
 		List<Make> listMake = Lists.newArrayList();
-		JsonNode response =  edmundsService.getMakes();
+		JsonNode carMakes =  edmundsService.getMakes();
 		
-		JSONArray arrayMakes = (JSONArray) response.getObject().get("makes");
+		JSONArray arrayMakes = (JSONArray) carMakes.getObject().get("makes");
 		
 		//System.out.println(test);
 		//System.out.println(arrayMakes);
@@ -82,7 +82,9 @@ public class EdmundsSource implements Source<CarMetadata>{
 					year.setYear_id(jsonYear.getLong("id"));
 					year.setYear(jsonYear.get("year").toString());
 					
-					//System.out.println(year.getYear());
+					JsonNode carDetails = edmundsService.getCarDetails(make.getMake(), model.getModel(), year.getYear());
+					
+					JSONArray arrayDetails = (JSONArray) carMakes.getObject().get("styles");
 					
 					listYears.add(year);
 				}

@@ -14,14 +14,28 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
 import edu.csula.vkc.models.CarMetadata;
+import edu.csula.vkc.models.Make;
 
-public class GenericCollector implements Collector<CarMetadata, CarMetadata> {
+public class GenericCollector implements Collector<Make, Make> {
 
 	MongoClient mongoClient;
 	MongoDatabase database;
 	MongoCollection<Document> collection;
 
 	public GenericCollector() {
+		super();
+	}
+
+	@Override
+	public Collection<Make> mungee(Collection<Make> src) {
+
+		// Add code to filter the data received
+
+		return src;
+	}
+
+	@Override
+	public void save(Collection<Make> data) {
 
 		// establish database connection to MongoDB
 		mongoClient = new MongoClient();
@@ -31,34 +45,22 @@ public class GenericCollector implements Collector<CarMetadata, CarMetadata> {
 
 		// select collection by name `tweets`
 		collection = database.getCollection("test");
-	}
 
-	@Override
-	public Collection<CarMetadata> mungee(Collection<CarMetadata> src) {
-
-		// Add code to filter the data received
-
-		return src;
-	}
-
-	@Override
-	public void save(Collection<CarMetadata> data) {
-		
 		List<Document> listDocuments = Lists.newArrayList();
 
-		for (CarMetadata carMetadata : data) {
+		for (Make carMetadata : data) {
 
 			Document document = new Document();
 
-			document.put("make_name", carMetadata.getMake_name());
-			document.put("make_nickname", carMetadata.getMake_nickname());
-			document.put("model_name", carMetadata.getModel_name());
-			document.put("model_nickname", carMetadata.getModel_name());
-			document.put("style_id", carMetadata.getStyle_id());
+			document.put("make_id", carMetadata.getMake_id());
+			document.put("make_name", carMetadata.getMake());
+			document.put("vehical_id", carMetadata.getVehicle_id());
+			// document.put("model_nickname", carMetadata.getModel_name());
+			// document.put("style_id", carMetadata.getStyle_id());
 
 			listDocuments.add(document);
 		}
-		
+
 		collection.insertMany(listDocuments);
 	}
 
