@@ -17,9 +17,6 @@ public class EdmundsService {
 			responseMake = Unirest
 					.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
 					.asJson().getBody();
-			
-			writer.writeNewFile("Edmunds", "Makes", responseMake);
-			
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
