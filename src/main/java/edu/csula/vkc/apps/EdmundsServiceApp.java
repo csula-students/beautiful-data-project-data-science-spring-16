@@ -10,20 +10,23 @@ public class EdmundsServiceApp {
 
 		JsonNode carMakes = EdmundsService.getMakes();
 
-		System.out.println("Makes response-->" + carMakes);
+		System.out.println("getMakes response-->" + carMakes);
 
 		JsonNode carModelsandYears = EdmundsService.getModelandYear();
 
-		System.out.println("Models and Years response-->" + carModelsandYears);
-		
+		System.out.println("getModelandYear response-->" + carModelsandYears);
+
 		JsonNode carStyleID = EdmundsService.getStyleID();
 
-		System.out.println("Car Style ID response-->" + carStyleID);
-		
-		JsonNode carTCOPrice = EdmundsService.getTCOPrice();
+		System.out.println("getStyleID response-->" + carStyleID);
 
-		System.out.println("Car TCO Price response-->" + carTCOPrice);
-		
+		// JsonNode carTCOPrice = EdmundsService.getTCOPrice();
+
+		// System.out.println("Car TCO Price response-->" + carTCOPrice);
+
+		JsonNode carDetailsByStyleID = EdmundsService.getCarDetailsByStyleID();
+
+		System.out.println("getCarDetailsByStyleID response-->" + carDetailsByStyleID);
 
 	}
 
