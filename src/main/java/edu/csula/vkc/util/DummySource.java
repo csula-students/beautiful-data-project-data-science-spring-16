@@ -133,7 +133,25 @@ public class DummySource implements Source<Make> {
 
 		Make makes6 = new Make(6, 66, "Jeep", "old", listModels6);
 
+		
+		//all properties
+		List<Styles> listStyles7 = new ArrayList<>();
+		Styles style7 = new Styles(1256, "Honda Civic", 4, new MPG(11.111, 456.0), new Price(2345, 111.8), "car", 2,
+				"rear", "10LPg", "automatic", "petrol", "Base");
+		listStyles7.add(style7);
+
+		List<Years> listyear7 = new ArrayList<>();
+		Years year7 = new Years(189, "2013", listStyles7);
+		listyear7.add(year7);
+
+		List<Model> listModels7 = new ArrayList<>();
+		Model model7 = new Model(11, "Honda CIvic LX", listyear7);
+		listModels7.add(model7);
+
+		Make makes7 = new Make(109, 1456, "Honda", "new", listModels7);
+		
 		List<Make> makesall = new ArrayList<>();
+		makesall.add(makes7);
 		makesall.add(makes6);
 		makesall.add(makes5);
 		makesall.add(makes4);
