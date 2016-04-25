@@ -10,7 +10,7 @@ public class CSVSource implements Source<Make>{
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

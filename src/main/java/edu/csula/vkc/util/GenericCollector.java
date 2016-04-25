@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import org.bson.Document;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -29,14 +31,16 @@ public class GenericCollector implements Collector<Make, Make> {
 	@Override
 	public Collection<Make> mungee(Collection<Make> src) {
 
-		// Add code to filter the data received
+		for (Make make : src) {
+			
+		}
 
 		return src;
 	}
 
 	@Override
-	public void save(Collection<Make> data) {
-
+	public void save(Collection<Make> data)  {
+		try{
 		// establish database connection to MongoDB
 		mongoClient = new MongoClient();
 
@@ -46,22 +50,15 @@ public class GenericCollector implements Collector<Make, Make> {
 		// select collection by name `tweets`
 		collection = database.getCollection("test");
 
-		List<Document> listDocuments = Lists.newArrayList();
+		ObjectMapper mapper = new ObjectMapper();
 
-		for (Make carMetadata : data) {
-
-			Document document = new Document();
-
-			//document.put("make_id", carMetadata.getMake_id());
-			//document.put("make_name", carMetadata.getMake());
-			//document.put("vehical_id", carMetadata.getVehicle_id());
-			// document.put("model_nickname", carMetadata.getModel_name());
-			// document.put("style_id", carMetadata.getStyle_id());
-
-			listDocuments.add(document);
+		for (Make make : data) {
+			collection.insertOne(Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(make)));
 		}
-
-		collection.insertMany(listDocuments);
+		}catch(Exception e){
+				System.out.println(e.toString()); 
+			
+		}
 	}
 
 }
