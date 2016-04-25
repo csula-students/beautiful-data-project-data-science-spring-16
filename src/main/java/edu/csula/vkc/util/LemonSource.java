@@ -106,8 +106,9 @@ public class LemonSource implements Source<Make> {
 			listMake.add(make);
 			writer.writeNewFile("LemonFree", make.getMake().trim().replaceAll(" ", "%20"), listMake);
 		}
-		writer.writeNewFile("LemonFree", listMake);
 
+		writer.writeNewFile("LemonFree", listMake);
+		
 		return listMake;
 
 	}
