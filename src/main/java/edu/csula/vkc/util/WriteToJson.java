@@ -3,6 +3,7 @@ package edu.csula.vkc.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,7 +15,7 @@ public class WriteToJson {
 	
 	private String folderForData = "data-science-2016\\";
 
-	public boolean writeNewFile(String serviceName, List<Make> make) {
+	public boolean writeNewFile(String serviceName, Collection<Make> make) {
 
 		try {
 
@@ -46,7 +47,7 @@ public class WriteToJson {
 		}
 	}
 	
-	public boolean writeNewFile(String serviceName, String modelName, List<Make> make) {
+	public boolean writeNewFile(String serviceName, String modelName, Collection<Make> make) {
 
 		try {
 

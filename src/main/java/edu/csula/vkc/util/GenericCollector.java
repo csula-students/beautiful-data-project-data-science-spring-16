@@ -17,6 +17,9 @@ import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
 import edu.csula.vkc.models.CarMetadata;
 import edu.csula.vkc.models.Make;
+import edu.csula.vkc.models.Model;
+import edu.csula.vkc.models.Styles;
+import edu.csula.vkc.models.Years;
 
 public class GenericCollector implements Collector<Make, Make> {
 
@@ -31,8 +34,17 @@ public class GenericCollector implements Collector<Make, Make> {
 	@Override
 	public Collection<Make> mungee(Collection<Make> src) {
 
+		//Code to remove cars without price 
 		for (Make make : src) {
-			
+			for (Model model: make.getModelList()){
+				for(Years year: model.getYear()){
+					for(Styles style: year.getStyles()){
+						if(style.getPrice().getUsedTmvRetail()==0){
+							year.getStyles().remove(style);
+						}
+					}
+				}
+			}
 		}
 
 		return src;
