@@ -1,10 +1,6 @@
 package edu.csula.vkc.apps;
 
-import org.json.JSONObject;
-
 import com.mashape.unirest.http.JsonNode;
-import com.mongodb.util.JSON;
-
 import edu.csula.vkc.services.EdmundsService;
 
 public class EdmundsServiceApp {
