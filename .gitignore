@@ -1,5 +1,4 @@
-# Gradle related files
- 
+# Gradle related files 
 .idea/
 build/
 *.env
