@@ -1,14 +1,9 @@
 package edu.csula.vkc.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
-
-import edu.csula.datascience.acquisition.MockData;
 import edu.csula.datascience.acquisition.Source;
 import edu.csula.vkc.models.MPG;
 import edu.csula.vkc.models.Make;
