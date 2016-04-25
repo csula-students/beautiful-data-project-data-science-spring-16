@@ -104,9 +104,9 @@ public class LemonSource implements Source<Make> {
 			}
 			make.setModelList(listModels);
 			listMake.add(make);
-			writer.writeNewFile("Edmunds", make.getMake().trim().replaceAll(" ", "%20"), listMake);
+			writer.writeNewFile("LemonFree", make.getMake().trim().replaceAll(" ", "%20"), listMake);
 		}
-		writer.writeNewFile("Edmunds", listMake);
+		writer.writeNewFile("LemonFree", listMake);
 
 		return listMake;
 
