@@ -149,7 +149,13 @@ public class DummySource implements Source<Make>{
 				
 				Make makes6 =new Make(6,66, "Jeep", "old", listModels6 );
 				
-				
+				List<Make> makesall = new ArrayList<>();
+				makesall.add(makes6);
+				makesall.add(makes5);
+				makesall.add(makes4);
+				makesall.add(makes3);
+				makesall.add(makes2);
+				makesall.add(makes1);
 				
 		
 		
