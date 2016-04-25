@@ -31,7 +31,7 @@ public class WriteToJson {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			System.out.println(make.get(0).getModelList().get(0).getModel().toString());
+			//System.out.println(make.get(0).getModelList().get(0).getModel().toString());
 
 			FileWriter file = new FileWriter(location + folderForData + serviceName +".json");
 			file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(make));
@@ -63,7 +63,7 @@ public class WriteToJson {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			System.out.println(make.get(0).getModelList().get(0).getModel().toString());
+			//System.out.println(make.get(0).getModelList().get(0).getModel().toString());
 
 			FileWriter file = new FileWriter(location + folderForData + serviceName+"."+modelName+ ".json");
 			file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(make));
