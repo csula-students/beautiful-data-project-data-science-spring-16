@@ -80,13 +80,14 @@ public class LemonSource implements Source<Make> {
 						Styles style = new Styles();
 						style.setVehicalType(jsonListing.has("bodystyle") && !jsonListing.get("bodystyle").equals(null)
 								? jsonListing.getString("bodystyle") : null);
-						style.setTrim(jsonListing.has("trim") && !jsonListing.get("trim").equals(null)
-								? jsonListing.getString("trim") : null);
-						style.setPrice(jsonListing.has("price") && jsonListing.isNull("price")
-								? new Price(jsonListing.getDouble("price"), jsonListing.getDouble("price"))
+						style.setTrim(jsonListing.has("trim")
+								? jsonListing.get("trim").toString() : null);
+						//System.out.println(jsonListing.has("trim")? jsonListing.get("trim"):null);
+						style.setPrice(jsonListing.has("price") && !jsonListing.get("price").equals("")
+								? new Price(Double.parseDouble(jsonListing.getString("price")), Double.parseDouble(jsonListing.getString("price")))
 								: new Price());
 						style.setMileage(jsonListing.has("mileage") && !jsonListing.isNull("mileage")
-								&& jsonListing.get("mileage").equals(null) ? jsonListing.getLong("mileage") : 0);
+								&& !jsonListing.get("mileage").equals("") ? jsonListing.getLong("mileage") : 0);
 
 						List<Styles> listStyles = Lists.newArrayList();
 						listStyles.add(style);

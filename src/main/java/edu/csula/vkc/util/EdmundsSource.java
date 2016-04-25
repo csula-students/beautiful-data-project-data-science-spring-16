@@ -51,7 +51,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 		WriteToJson writer = new WriteToJson();
 		
 		// Code for Make Retival
-		for (int i = 58; i < arrayMakes.length(); i++) {
+		for (int i = 0; i < arrayMakes.length(); i++) {
 			JSONObject jsonMake = arrayMakes.getJSONObject(i);
 			Make make = new Make();
 
@@ -60,7 +60,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 			make.setSource("Edmunds");
 
 			// System.out.println(make.getMake_id());
-			// System.out.println(make.getMake());
+			System.out.println(make.getMake());
 
 			JSONArray arrayModels = jsonMake.getJSONArray("models");
 			List<Model> listModels = Lists.newArrayList();
@@ -75,7 +75,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 				model.setModel(jsonModel.getString("name"));
 
 				// System.out.println(model.getModel_id());
-				// System.out.println(model.getModel());
+				System.out.println("\t " + model.getModel());
 
 				JSONArray arrayYears = jsonModel.getJSONArray("years");
 				List<Years> listYears = Lists.newArrayList();
@@ -91,7 +91,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 
 					JsonNode carDetails = edmundsService.getCarDetails(make.getMake(), model.getModel(),
 							year.getYear());
-					System.out.print(make.getMake() + " " + model.getModel() + " " + year.getYear());
+					System.out.println(" \t \t" + year.getYear());
 
 					if (carDetails.getObject().has("styles")) {
 						JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
@@ -141,7 +141,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 
 							listStyles.add(style);
 							Thread.sleep(500);
-							System.out.println(" "+style.getName());
+							System.out.println("\t \t \t "+style.getName());
 						}
 						
 						year.setStyles(listStyles);
