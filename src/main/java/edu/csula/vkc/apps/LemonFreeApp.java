@@ -1,9 +1,5 @@
 package edu.csula.vkc.apps;
 
-import com.mashape.unirest.http.JsonNode;
-
-import edu.csula.vkc.services.LemonFreeService;
-
 public class LemonFreeApp {
 	public static void main(String[] args) {
 
