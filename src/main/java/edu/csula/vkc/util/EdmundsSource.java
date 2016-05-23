@@ -26,6 +26,16 @@ import edu.csula.vkc.services.EdmundsService;
 
 public class EdmundsSource implements Source<CarMetadata> {
 
+	EdmundsService edmundsService;
+	List<Make> listMake;
+	WriteToJson writer;
+
+	public EdmundsSource() {
+		edmundsService = new EdmundsService();
+		listMake = Lists.newArrayList();
+		writer = new WriteToJson();
+	}
+
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
@@ -38,18 +48,14 @@ public class EdmundsSource implements Source<CarMetadata> {
 		return null;
 	}
 
-	public List<Make> getData() throws Exception {
-
-		EdmundsService edmundsService = new EdmundsService();
-		List<Make> listMake = Lists.newArrayList();
+	public List<Make> getMakes() throws Exception {
 		JsonNode carMakes = edmundsService.getMakes();
 
 		JSONArray arrayMakes = (JSONArray) carMakes.getObject().get("makes");
 
 		// System.out.println(test);
 		// System.out.println(arrayMakes);
-		WriteToJson writer = new WriteToJson();
-		
+
 		// Code for Make Retival
 		for (int i = 0; i < arrayMakes.length(); i++) {
 			JSONObject jsonMake = arrayMakes.getJSONObject(i);
@@ -89,64 +95,8 @@ public class EdmundsSource implements Source<CarMetadata> {
 					year.setYear_id(jsonYear.getLong("id"));
 					year.setYear(jsonYear.get("year").toString());
 
-					JsonNode carDetails = edmundsService.getCarDetails(make.getMake(), model.getModel(),
-							year.getYear());
 					System.out.println(" \t \t" + year.getYear());
-
-					if (carDetails.getObject().has("styles")) {
-						JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
-						List<Styles> listStyles = Lists.newArrayList();
-
-						for (int l = 0; l < arrayStyles.length(); l++) {
-							JSONObject jsonStyle = arrayStyles.getJSONObject(l);
-							Styles style = new Styles();
-
-							Price price = new Price();
-
-							style.setDriveSystem(
-									jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
-							style.setNumOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
-							style.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
-							style.setName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
-							style.setStyleId(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
-							if (jsonStyle.has("MPG")) {
-								style.setMpg(new MPG(	
-									(jsonStyle.getJSONObject("MPG").has("highway")?	jsonStyle.getJSONObject("MPG").getDouble("highway"):0.0),
-									(jsonStyle.getJSONObject("MPG").has("city")?	jsonStyle.getJSONObject("MPG").getDouble("city"):0.0)));
-							}
-							if (jsonStyle.has("engine")) {
-								
-								style.setNoOfCylinder((jsonStyle.getJSONObject("engine").has("cylinder")? jsonStyle.getJSONObject("engine").getInt("cylinder"): 0));
-								// style.setEngineLocation(jsonStyle.getJSONObject("engine").getString(""));
-								style.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")? jsonStyle.getJSONObject("engine").getString("fuelType"):null);
-							}
-							if (jsonStyle.has("price")) {
-								style.setPrice(new Price(
-										jsonStyle.getJSONObject("price").has("usedTradeIn")?
-										jsonStyle.getJSONObject("price").getDouble("usedTradeIn"):0.0,
-										
-										jsonStyle.getJSONObject("price").has("usedTmvRetail")?
-										jsonStyle.getJSONObject("price").getDouble("usedTmvRetail"):0.0));
-							}
-							if (jsonStyle.has("submodel")) {
-								style.setVehicalType(
-										jsonStyle.getJSONObject("submodel").has("body")?
-										jsonStyle.getJSONObject("submodel").getString("body"):null);
-							}
-							if (jsonStyle.has("transmission")) {
-								style.setTransmission(
-										jsonStyle.getJSONObject("transmission").has("transmissionType")?
-										jsonStyle.getJSONObject("transmission").getString("transmissionType"):null);
-							}
-
-							listStyles.add(style);
-							Thread.sleep(500);
-							System.out.println("\t \t \t "+style.getName());
-						}
-						
-						year.setStyles(listStyles);
-					}
-
+					
 					listYears.add(year);
 				}
 
@@ -157,13 +107,73 @@ public class EdmundsSource implements Source<CarMetadata> {
 			make.setModelList(listModels);
 
 			listMake.add(make);
-			
+
 			writer.writeNewFile("Edmunds", make.getMake(), listMake);
 		}
-		
+
 		writer.writeNewFile("Edmunds", listMake);
 		
 		return listMake;
+	}
+
+	public List<Styles> getStyles(String make, String model, String year) throws Exception {
+		
+		List<Styles> listStyles = Lists.newArrayList();
+		JsonNode carDetails = edmundsService.getCarDetails(make, model, year);
+
+		if (carDetails.getObject().has("styles")) {
+			JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
+
+			for (int l = 0; l < arrayStyles.length(); l++) {
+				JSONObject jsonStyle = arrayStyles.getJSONObject(l);
+				Styles style = new Styles();
+
+				Price price = new Price();
+
+				style.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
+				style.setNumOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
+				style.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
+				style.setName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
+				style.setStyleId(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
+				if (jsonStyle.has("MPG")) {
+					style.setMpg(new MPG(
+							(jsonStyle.getJSONObject("MPG").has("highway")
+									? jsonStyle.getJSONObject("MPG").getDouble("highway") : 0.0),
+							(jsonStyle.getJSONObject("MPG").has("city")
+									? jsonStyle.getJSONObject("MPG").getDouble("city") : 0.0)));
+				}
+				if (jsonStyle.has("engine")) {
+
+					style.setNoOfCylinder((jsonStyle.getJSONObject("engine").has("cylinder")
+							? jsonStyle.getJSONObject("engine").getInt("cylinder") : 0));
+					// style.setEngineLocation(jsonStyle.getJSONObject("engine").getString(""));
+					style.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")
+							? jsonStyle.getJSONObject("engine").getString("fuelType") : null);
+				}
+				if (jsonStyle.has("price")) {
+					style.setPrice(new Price(jsonStyle.getJSONObject("price").has("usedTradeIn")
+							? jsonStyle.getJSONObject("price").getDouble("usedTradeIn") : 0.0,
+
+							jsonStyle.getJSONObject("price").has("usedTmvRetail")
+									? jsonStyle.getJSONObject("price").getDouble("usedTmvRetail") : 0.0));
+				}
+				if (jsonStyle.has("submodel")) {
+					style.setVehicalType(jsonStyle.getJSONObject("submodel").has("body")
+							? jsonStyle.getJSONObject("submodel").getString("body") : null);
+				}
+				if (jsonStyle.has("transmission")) {
+					style.setTransmission(jsonStyle.getJSONObject("transmission").has("transmissionType")
+							? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
+				}
+
+				listStyles.add(style);
+				Thread.sleep(50);
+				System.out.println("\t \t \t " + style.getName());
+
+			}
+		}
+
+		return listStyles;
 	}
 
 }
