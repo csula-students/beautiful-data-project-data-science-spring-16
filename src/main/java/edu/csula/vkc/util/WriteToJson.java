@@ -13,9 +13,9 @@ import edu.csula.vkc.models.Vehicle;
 
 public class WriteToJson {
 
-	private String location = "C:\\Users\\chitt_000\\Documents\\";
-
-	private String folderForData = "data-science-2016\\";
+	private static String location = "C:\\Users\\chitt_000\\Documents\\";
+	private static String folderForData = "data-science-2016\\";
+	private static String fileName = "name"+ (new Date()).toString() +".json";
 
 	public boolean writeNewFile(String serviceName, Collection<Make> make) {
 
@@ -79,7 +79,7 @@ public class WriteToJson {
 
 	public boolean writeNewFile(Collection<Vehicle> vehical) {
 		try {
-			File f = new File(location + folderForData + (new Date()).toString() + ".json");
+			File f = new File(location + folderForData + fileName);
 
 			if (f.exists()) {
 				// Do Nothing
@@ -93,7 +93,7 @@ public class WriteToJson {
 
 			// System.out.println(make.get(0).getModelList().get(0).getModel().toString());
 
-			FileWriter file = new FileWriter(location + folderForData + (new Date()).toString() + ".json");
+			FileWriter file = new FileWriter(location + folderForData + fileName, true);
 			file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(vehical));
 			file.flush();
 			file.close();
