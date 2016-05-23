@@ -1,19 +1,11 @@
 package edu.csula.vkc.util;
 
-import java.time.Year;
 import java.util.Collection;
 import java.util.List;
-
-import javax.swing.ListModel;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.google.common.collect.Lists;
 import com.mashape.unirest.http.JsonNode;
-import com.mongodb.util.JSON;
-import com.sun.media.jfxmediaimpl.MarkerStateListener;
-
 import edu.csula.datascience.acquisition.Source;
 import edu.csula.vkc.models.CarMetadata;
 import edu.csula.vkc.models.MPG;
