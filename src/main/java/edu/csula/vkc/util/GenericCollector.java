@@ -5,17 +5,11 @@ import java.util.Collection;
 import java.util.List;
 import org.bson.Document;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
-import edu.csula.vkc.models.CarMetadata;
 import edu.csula.vkc.models.Make;
 import edu.csula.vkc.models.Model;
 import edu.csula.vkc.models.Price;
