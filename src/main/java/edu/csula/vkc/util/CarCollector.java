@@ -9,7 +9,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.Collector;
-import edu.csula.vkc.models.Price;
 import edu.csula.vkc.models.Vehicle;
 
 public class CarCollector implements Collector<Vehicle, Vehicle> {
@@ -26,13 +25,7 @@ public class CarCollector implements Collector<Vehicle, Vehicle> {
 	public Collection<Vehicle> mungee(Collection<Vehicle> makesList) {
 
 		List<Vehicle> makesdataListtoRemove = new ArrayList<Vehicle>();
-		List<Price> Price = new ArrayList<Price>();
 
-		for (Vehicle make : makesList) {
-
-			//Code to filter Vehicals.
-			
-		}
 		makesList.removeAll(makesdataListtoRemove);
 		System.out.println(makesList.size());
 
