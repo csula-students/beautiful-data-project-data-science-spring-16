@@ -26,25 +26,6 @@ public class GenericCollector implements Collector<Make, Make> {
 		super();
 	}
 
-//	@Override
-//	public Collection<Make> mungee(Collection<Make> src) {
-//
-//		// Code to remove cars without price
-//		for (Make make : src) {
-//			for (Model model : make.getModelList()) {
-//				for (Years year : model.getYear()) {
-//					for (Styles style : year.getStyles()) {
-//						if (style.getPrice().getUsedTmvRetail() == 0) {
-//							year.getStyles().remove(style);
-//						}
-//					}
-//				}
-//			}
-//		}
-//
-//		return src;
-//	}
-
 	@Override
 	public Collection<Make> mungee(Collection<Make> makesList) {
 
