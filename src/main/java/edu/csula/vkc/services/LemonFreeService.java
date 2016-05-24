@@ -12,7 +12,7 @@ public class LemonFreeService {
 
 	static int round = 0;
 
-	public JsonNode getMakes() {
+	public static JsonNode getMakes() {
 
 		JsonNode responseMake = null;
 		try {
@@ -26,7 +26,7 @@ public class LemonFreeService {
 		return responseMake;
 	}
 
-	public JsonNode getModelsByMakeID(long id) {
+	public static JsonNode getModelsByMakeID(long id) {
 
 		JsonNode responseModelsByMakeID = null;
 		try {
@@ -134,7 +134,7 @@ public class LemonFreeService {
 	// return responseLocationsbyMake;
 	// }
 
-	public JsonNode getListingsbyMakeAndModel(String makeName, String modelName) {
+	public static JsonNode getListingsbyMakeAndModel(String makeName, String modelName) {
 
 		JsonNode responseListingsbyMakeAndModel = null;
 		try {
