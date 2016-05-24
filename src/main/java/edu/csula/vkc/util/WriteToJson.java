@@ -75,7 +75,7 @@ public class WriteToJson {
 		}
 	}
 
-	public boolean writeNewVehicleFile(String makeName, String modelName, Vehicle vehicle) {
+	public boolean writeNewVehicleFile(String makeName, String modelName, Collection<Vehicle> vehicle) {
 		try {
 			File f = new File(location + folderForData + makeName + "." + modelName + ".json");
 
@@ -91,7 +91,7 @@ public class WriteToJson {
 
 			// System.out.println(make.get(0).getModelList().get(0).getModel().toString());
 
-			FileWriter file = new FileWriter(location + folderForData + makeName + "." + modelName + ".json", true);
+			FileWriter file = new FileWriter(location + folderForData + makeName + "." + modelName + ".json");
 			file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(vehicle));
 			file.flush();
 			file.close();
