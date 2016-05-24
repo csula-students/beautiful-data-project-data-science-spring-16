@@ -4,21 +4,21 @@ import java.util.List;
 
 public class Vehicle {
 
-	private long vehicle_id;
-	private String make_name;
-	private String model_make;
+	private String vehicleId;
+	private String makeName;
+	private String modelName;
 	private String year;
-	private String vehicle_name;
-	private int no_of_doors;
-	private String vehicle_type;
-	private int no_of_cylinder;
-	private String engine_location;
+	private String vehicleName;
+	private int noOfDoors;
+	private String vehicleType;
+	private int noOfCylinder;
+	private String engineLocation;
 	private String transmission;
-	private String drive_system;
-	private String fuel_type;
+	private String driveSystem;
+	private String fuelType;
 	private String trim;
 	private MPG milage;
-	private int original_price;
+	private int originalPrice;
 	private List<Details> detail;
 
 	public Vehicle() {
@@ -26,50 +26,50 @@ public class Vehicle {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vehicle(long vehicle_id, String make_name, String model_make, String year, String vehicle_name,
-			int no_of_doors, String vehicle_type, int no_of_cylinder, String engine_location, String transmission,
-			String drive_system, String fuel_type, String trim, MPG milage, int original_price, List<Details> detail) {
+	public Vehicle(String vehicleId, String makeName, String modelName, String year, String vehicleName, int noOfDoors,
+			String vehicleType, int noOfCylinder, String engineLocation, String transmission, String driveSystem,
+			String fuelType, String trim, MPG milage, int originalPrice, List<Details> detail) {
 		super();
-		this.vehicle_id = vehicle_id;
-		this.make_name = make_name;
-		this.model_make = model_make;
+		this.vehicleId = vehicleId;
+		this.makeName = makeName;
+		this.modelName = modelName;
 		this.year = year;
-		this.vehicle_name = vehicle_name;
-		this.no_of_doors = no_of_doors;
-		this.vehicle_type = vehicle_type;
-		this.no_of_cylinder = no_of_cylinder;
-		this.engine_location = engine_location;
+		this.vehicleName = vehicleName;
+		this.noOfDoors = noOfDoors;
+		this.vehicleType = vehicleType;
+		this.noOfCylinder = noOfCylinder;
+		this.engineLocation = engineLocation;
 		this.transmission = transmission;
-		this.drive_system = drive_system;
-		this.fuel_type = fuel_type;
+		this.driveSystem = driveSystem;
+		this.fuelType = fuelType;
 		this.trim = trim;
 		this.milage = milage;
-		this.original_price = original_price;
+		this.originalPrice = originalPrice;
 		this.detail = detail;
 	}
 
-	public long getVehicle_id() {
-		return vehicle_id;
+	public String getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehicle_id(long vehicle_id) {
-		this.vehicle_id = vehicle_id;
+	public void setVehicleId(String vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
-	public String getMake_name() {
-		return make_name;
+	public String getMakeName() {
+		return makeName;
 	}
 
-	public void setMake_name(String make_name) {
-		this.make_name = make_name;
+	public void setMakeName(String makeName) {
+		this.makeName = makeName;
 	}
 
-	public String getModel_make() {
-		return model_make;
+	public String getModelName() {
+		return modelName;
 	}
 
-	public void setModel_make(String model_make) {
-		this.model_make = model_make;
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
 	}
 
 	public String getYear() {
@@ -80,44 +80,44 @@ public class Vehicle {
 		this.year = year;
 	}
 
-	public String getVehicle_name() {
-		return vehicle_name;
+	public String getVehicleName() {
+		return vehicleName;
 	}
 
-	public void setVehicle_name(String vehicle_name) {
-		this.vehicle_name = vehicle_name;
+	public void setVehicleName(String vehicleName) {
+		this.vehicleName = vehicleName;
 	}
 
-	public int getNo_of_doors() {
-		return no_of_doors;
+	public int getNoOfDoors() {
+		return noOfDoors;
 	}
 
-	public void setNo_of_doors(int no_of_doors) {
-		this.no_of_doors = no_of_doors;
+	public void setNoOfDoors(int noOfDoors) {
+		this.noOfDoors = noOfDoors;
 	}
 
-	public String getVehicle_type() {
-		return vehicle_type;
+	public String getVehicleType() {
+		return vehicleType;
 	}
 
-	public void setVehicle_type(String vehicle_type) {
-		this.vehicle_type = vehicle_type;
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
 	}
 
-	public int getNo_of_cylinder() {
-		return no_of_cylinder;
+	public int getNoOfCylinder() {
+		return noOfCylinder;
 	}
 
-	public void setNo_of_cylinder(int no_of_cylinder) {
-		this.no_of_cylinder = no_of_cylinder;
+	public void setNoOfCylinder(int noOfCylinder) {
+		this.noOfCylinder = noOfCylinder;
 	}
 
-	public String getEngine_location() {
-		return engine_location;
+	public String getEngineLocation() {
+		return engineLocation;
 	}
 
-	public void setEngine_location(String engine_location) {
-		this.engine_location = engine_location;
+	public void setEngineLocation(String engineLocation) {
+		this.engineLocation = engineLocation;
 	}
 
 	public String getTransmission() {
@@ -128,20 +128,20 @@ public class Vehicle {
 		this.transmission = transmission;
 	}
 
-	public String getDrive_system() {
-		return drive_system;
+	public String getDriveSystem() {
+		return driveSystem;
 	}
 
-	public void setDrive_system(String drive_system) {
-		this.drive_system = drive_system;
+	public void setDriveSystem(String driveSystem) {
+		this.driveSystem = driveSystem;
 	}
 
-	public String getFuel_type() {
-		return fuel_type;
+	public String getFuelType() {
+		return fuelType;
 	}
 
-	public void setFuel_type(String fuel_type) {
-		this.fuel_type = fuel_type;
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
 	}
 
 	public String getTrim() {
@@ -160,12 +160,12 @@ public class Vehicle {
 		this.milage = milage;
 	}
 
-	public int getOriginal_price() {
-		return original_price;
+	public int getOriginalPrice() {
+		return originalPrice;
 	}
 
-	public void setOriginal_price(int original_price) {
-		this.original_price = original_price;
+	public void setOriginalPrice(int originalPrice) {
+		this.originalPrice = originalPrice;
 	}
 
 	public List<Details> getDetail() {

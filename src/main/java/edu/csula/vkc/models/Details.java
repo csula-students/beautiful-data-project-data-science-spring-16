@@ -1,48 +1,48 @@
 package edu.csula.vkc.models;
 
 public class Details {
-	private long detail_id;
-	private int sale_price;
-	private int miles_run;
+	private String detailId;
+	private int salePrice;
+	private int milesRun;
 	private String source;
-	private int years_old;
+	private int yearsOld;
 
 	public Details() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Details(long detail_id, int sale_price, int miles_run, String source, int years_old) {
+	public Details(String detailId, int salePrice, int milesRun, String source, int yearsOld) {
 		super();
-		this.detail_id = detail_id;
-		this.sale_price = sale_price;
-		this.miles_run = miles_run;
+		this.detailId = detailId;
+		this.salePrice = salePrice;
+		this.milesRun = milesRun;
 		this.source = source;
-		this.years_old = years_old;
+		this.yearsOld = yearsOld;
 	}
 
-	public long getDetail_id() {
-		return detail_id;
+	public String getDetailId() {
+		return detailId;
 	}
 
-	public void setDetail_id(long detail_id) {
-		this.detail_id = detail_id;
+	public void setDetailId(String detailId) {
+		this.detailId = detailId;
 	}
 
-	public int getSale_price() {
-		return sale_price;
+	public int getSalePrice() {
+		return salePrice;
 	}
 
-	public void setSale_price(int sale_price) {
-		this.sale_price = sale_price;
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
 	}
 
-	public int getMiles_run() {
-		return miles_run;
+	public int getMilesRun() {
+		return milesRun;
 	}
 
-	public void setMiles_run(int miles_run) {
-		this.miles_run = miles_run;
+	public void setMilesRun(int milesRun) {
+		this.milesRun = milesRun;
 	}
 
 	public String getSource() {
@@ -53,12 +53,12 @@ public class Details {
 		this.source = source;
 	}
 
-	public int getYears_old() {
-		return years_old;
+	public int getYearsOld() {
+		return yearsOld;
 	}
 
-	public void setYears_old(int years_old) {
-		this.years_old = years_old;
+	public void setYearsOld(int yearsOld) {
+		this.yearsOld = yearsOld;
 	}
 
 }
