@@ -10,6 +10,10 @@ public class LemonFreeService {
 	static String keyChitta = "93fa1b00fac63ed8fc0317294736f57f";
 	// static String keyVidus = "gfjuzyug6ajpxeejf9tdse48";
 
+	static String strMake;
+	static String strModel;
+	static JsonNode responseListings;
+
 	static int round = 0;
 
 	public static JsonNode getMakes() {
@@ -59,88 +63,23 @@ public class LemonFreeService {
 		return useKey;
 	}
 
-	// public static JsonNode getTrimsByMakeandModel() {
-	//
-	// JsonNode responseTrimsByMakeandModel = null;
-	// try {
-	// responseTrimsByMakeandModel = Unirest
-	// .get("http://api.lemonfree.com/v2/trims/?make=Chevrolet&model=Cavalier&format=json&key=07859aa5804ac8c1425bdb703ca961ed")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseTrimsByMakeandModel;
-	// }
-	//
-	// public static JsonNode getYearsByMakeandModel() {
-	//
-	// JsonNode responseYearsByMakeandModel = null;
-	// try {
-	// responseYearsByMakeandModel = Unirest
-	// .get("http://api.lemonfree.com/v2/years/?make=Nissan&model=Altima&format=json&key=07859aa5804ac8c1425bdb703ca961ed")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseYearsByMakeandModel;
-	// }
-	//
-	// public static JsonNode getPricesByMake() {
-	//
-	// JsonNode responsePricesByMake = null;
-	// try {
-	// responsePricesByMake = Unirest
-	// .get("http://api.lemonfree.com/v2/prices/?make=Oldsmobile&format=json&key=07859aa5804ac8c1425bdb703ca961ed")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responsePricesByMake;
-	// }
-	//
-	// public static JsonNode getLocations() {
-	//
-	// JsonNode responseLocations = null;
-	// try {
-	// responseLocations = Unirest
-	// .get("http://api.lemonfree.com/v2/locations/?format=json&key=07859aa5804ac8c1425bdb703ca961ed")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseLocations;
-	// }
-	//
-	// public static JsonNode getLocationsbyMake() {
-	//
-	// JsonNode responseLocationsbyMake = null;
-	// try {
-	// responseLocationsbyMake = Unirest
-	// .get("http://api.lemonfree.com/v2/locations/?make=Toyota&format=json&key=07859aa5804ac8c1425bdb703ca961ed")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseLocationsbyMake;
-	// }
-
 	public static JsonNode getListingsbyMakeAndModel(String makeName, String modelName) {
 
 		JsonNode responseListingsbyMakeAndModel = null;
 		try {
-			// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
-			responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
-					+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
+
+			if (makeName == strMake && modelName == strModel) {
+				responseListingsbyMakeAndModel = responseListings;
+			} else {
+				System.out.println("Lemon Free Service : Query Fired");
+				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
+				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
+						+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
+				
+				strMake = makeName;
+				strModel = modelName;
+				responseListings = responseListingsbyMakeAndModel;
+			}
 		} catch (UnirestException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
