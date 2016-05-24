@@ -23,6 +23,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 	WriteToJson writer;
 
 	public EdmundsSource() {
+		super();
 		edmundsService = new EdmundsService();
 		listMake = Lists.newArrayList();
 		writer = new WriteToJson();
