@@ -32,9 +32,9 @@ public class LemonSource implements Source<Make> {
 	}
 
 	public List<Make> getData() throws InterruptedException {
-		LemonFreeService lemonFreeService = new LemonFreeService();
+		
 		List<Make> listMake = Lists.newArrayList();
-		JsonNode carMakes = lemonFreeService.getMakes();
+		JsonNode carMakes = LemonFreeService.getMakes();
 		System.out.println("Hello Source");
 		JSONArray arrayMakes = (JSONArray) carMakes.getObject().getJSONObject("response").getJSONArray("result");
 
@@ -52,7 +52,7 @@ public class LemonSource implements Source<Make> {
 
 			System.out.println(make.getMake());
 
-			JsonNode carModels = lemonFreeService.getModelsByMakeID(make.getMake_id());
+			JsonNode carModels = LemonFreeService.getModelsByMakeID(make.getMake_id());
 			JSONArray arrayModels = (JSONArray) carModels.getObject().getJSONObject("response").getJSONArray("result");
 
 			for (int j = 0; j < arrayModels.length(); j++) {
@@ -63,7 +63,7 @@ public class LemonSource implements Source<Make> {
 				model.setModel_id(jsonModel.getLong("model_id"));
 				System.out.println("\t" + model.getModel());
 
-				JsonNode carListing = lemonFreeService.getListingsbyMakeAndModel(make.getMake().trim().replaceAll(" ", "%20"), model.getModel().trim().replaceAll(" ", "%20"));
+				JsonNode carListing = LemonFreeService.getListingsbyMakeAndModel(make.getMake().trim().replaceAll(" ", "%20"), model.getModel().trim().replaceAll(" ", "%20"));
 				
 				if (carListing.getObject().getJSONObject("response").getInt("response_code")==0) {
 					

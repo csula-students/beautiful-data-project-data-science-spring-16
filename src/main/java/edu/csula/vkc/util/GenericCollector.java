@@ -5,17 +5,11 @@ import java.util.Collection;
 import java.util.List;
 import org.bson.Document;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
-import edu.csula.vkc.models.CarMetadata;
 import edu.csula.vkc.models.Make;
 import edu.csula.vkc.models.Model;
 import edu.csula.vkc.models.Price;
@@ -31,25 +25,6 @@ public class GenericCollector implements Collector<Make, Make> {
 	public GenericCollector() {
 		super();
 	}
-
-//	@Override
-//	public Collection<Make> mungee(Collection<Make> src) {
-//
-//		// Code to remove cars without price
-//		for (Make make : src) {
-//			for (Model model : make.getModelList()) {
-//				for (Years year : model.getYear()) {
-//					for (Styles style : year.getStyles()) {
-//						if (style.getPrice().getUsedTmvRetail() == 0) {
-//							year.getStyles().remove(style);
-//						}
-//					}
-//				}
-//			}
-//		}
-//
-//		return src;
-//	}
 
 	@Override
 	public Collection<Make> mungee(Collection<Make> makesList) {
