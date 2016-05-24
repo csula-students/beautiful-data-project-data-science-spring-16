@@ -42,7 +42,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 	}
 
 	public List<Make> getMakes() throws Exception {
-		JsonNode carMakes = edmundsService.getMakes();
+		JsonNode carMakes = EdmundsService.getMakes();
 
 		JSONArray arrayMakes = (JSONArray) carMakes.getObject().get("makes");
 
@@ -112,7 +112,7 @@ public class EdmundsSource implements Source<CarMetadata> {
 	public List<Styles> getStyles(String make, String model, String year) throws Exception {
 		
 		List<Styles> listStyles = Lists.newArrayList();
-		JsonNode carDetails = edmundsService.getCarDetails(make, model, year);
+		JsonNode carDetails = EdmundsService.getCarDetails(make, model, year);
 
 		if (carDetails.getObject().has("styles")) {
 			JSONArray arrayStyles = (JSONArray) carDetails.getObject().get("styles");
@@ -120,8 +120,6 @@ public class EdmundsSource implements Source<CarMetadata> {
 			for (int l = 0; l < arrayStyles.length(); l++) {
 				JSONObject jsonStyle = arrayStyles.getJSONObject(l);
 				Styles style = new Styles();
-
-				Price price = new Price();
 
 				style.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
 				style.setNumOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
