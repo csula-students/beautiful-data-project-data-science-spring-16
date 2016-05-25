@@ -86,9 +86,11 @@ public class GenericSource implements Source<Vehicle> {
 					listVehicle.addAll(getVehicleDetails(jsonMake.getString("niceName").toString(),
 							jsonModel.getString("name").toString(), jsonYear.get("year").toString()));
 				}
+				//Write file as per models
 				writer.writeNewVehicleFile(jsonMake.getString("niceName").toString().replace(" ", "-"),
 						jsonModel.getString("name").toString().replace(" ", "-"), listVehicle);
 			}
+			//Write file as per make.
 			writer.writeNewVehicleFile(jsonMake.getString("niceName").toString(), listVehicle);
 		} catch (Exception e) {
 			throw e;
@@ -155,8 +157,10 @@ public class GenericSource implements Source<Vehicle> {
 								? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
 					}
 
+					//Call to Lemon Free API for car listings.
 					JsonNode nodeLemon = LemonFreeService.getListingsbyMakeAndModel(strMakeModified, strModelModified);
 
+					//Checking if there are listings.
 					if (nodeLemon.getObject().getJSONObject("response").getInt("response_code") == 0) {
 						if (nodeLemon.getObject().getJSONObject("response").getJSONObject("result").has("listings")) {
 							JSONArray arrayDetails = (JSONArray) nodeLemon.getObject().getJSONObject("response")
@@ -164,6 +168,7 @@ public class GenericSource implements Source<Vehicle> {
 
 							List<Details> listDetails = Lists.newArrayList();
 
+							//Default object for Edmunds TMZ price
 							Details det = new Details();
 
 							if (jsonStyle.has("price")) {
@@ -175,6 +180,7 @@ public class GenericSource implements Source<Vehicle> {
 								det.setYearsOld(0);
 							}
 
+							//Further objects of price as per LemonFree api.
 							for (int m = 0; m < arrayDetails.length(); m++) {
 
 								JSONObject objDetails = arrayDetails.getJSONObject(m);
@@ -184,6 +190,7 @@ public class GenericSource implements Source<Vehicle> {
 									objDetails.put("trim", arrayStyles.getJSONObject(l).get("trim"));
 								}
 
+								//Check if there are direct objects.
 								if ((objDetails.getInt("year") == (Integer.parseInt(year)) && vehicle.getTrim()
 										.toLowerCase().equals(objDetails.getString("trim").toLowerCase()))) {
 									Details details = new Details();
@@ -202,9 +209,13 @@ public class GenericSource implements Source<Vehicle> {
 
 									listDetails.add(details);
 								} else {
+									
+									//Further code for improvements if the trim name are different.
 									if (objDetails.getInt("year") == (Integer.parseInt(year))) {
 										String strVehicleTrim = "Edmunds";
 										String strSecondTrim = "Second";
+										
+										//check if trim contains quattro
 										if (vehicle.getTrim().contains("quattro")) {
 											strVehicleTrim = vehicle.getTrim().replace("quattro", "").toLowerCase()
 													.trim();
@@ -212,12 +223,14 @@ public class GenericSource implements Source<Vehicle> {
 													.toLowerCase();
 										}
 
+										//Check if trim contains PZEV.
 										if (vehicle.getTrim().contains("PZEV")) {
 											strVehicleTrim = vehicle.getTrim().replace("PZEV", "").toLowerCase().trim();
 											strSecondTrim = objDetails.getString("trim").replace("PZEV ", "")
 													.toLowerCase();
 										}
 
+										//Object creating if names are same after improvements.
 										if (strVehicleTrim.equals(strSecondTrim)) {
 
 											Details details = new Details();
