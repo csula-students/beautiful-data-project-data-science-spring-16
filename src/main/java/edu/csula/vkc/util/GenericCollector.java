@@ -12,7 +12,6 @@ import com.mongodb.client.MongoDatabase;
 import edu.csula.datascience.acquisition.*;
 import edu.csula.vkc.models.Make;
 import edu.csula.vkc.models.Model;
-import edu.csula.vkc.models.Price;
 import edu.csula.vkc.models.Styles;
 import edu.csula.vkc.models.Years;
 
