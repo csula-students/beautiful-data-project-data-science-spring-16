@@ -22,9 +22,9 @@ public class LemonFreeService {
 		try {
 			responseMake = Unirest.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + getKey()).asJson()
 					.getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.print("Source : LemonFree Service");
+			System.out.println(e.toString());
 		}
 
 		return responseMake;
@@ -37,12 +37,37 @@ public class LemonFreeService {
 			responseModelsByMakeID = Unirest
 					.get("http://api.lemonfree.com/v2/models/?make_id=" + id + "&format=json&key=" + getKey()).asJson()
 					.getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.print("Source : LemonFree Service");
+			System.out.println(e.toString());
 		}
 
 		return responseModelsByMakeID;
+	}
+
+	public static JsonNode getListingsbyMakeAndModel(String makeName, String modelName) {
+
+		JsonNode responseListingsbyMakeAndModel = null;
+		try {
+
+			if (makeName == strMake && modelName == strModel) {
+				responseListingsbyMakeAndModel = responseListings;
+			} else {
+				// System.out.println("Lemon Free Service : Query Fired");
+				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
+				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
+						+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
+
+				strMake = makeName;
+				strModel = modelName;
+				responseListings = responseListingsbyMakeAndModel;
+			}
+		} catch (Exception e) {
+			System.out.print("Source : LemonFree Service");
+			System.out.println(e.toString());
+		}
+
+		return responseListingsbyMakeAndModel;
 	}
 
 	private static String getKey() {
@@ -61,31 +86,6 @@ public class LemonFreeService {
 
 		round++;
 		return useKey;
-	}
-
-	public static JsonNode getListingsbyMakeAndModel(String makeName, String modelName) {
-
-		JsonNode responseListingsbyMakeAndModel = null;
-		try {
-
-			if (makeName == strMake && modelName == strModel) {
-				responseListingsbyMakeAndModel = responseListings;
-			} else {
-				//System.out.println("Lemon Free Service : Query Fired");
-				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
-				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
-						+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
-				
-				strMake = makeName;
-				strModel = modelName;
-				responseListings = responseListingsbyMakeAndModel;
-			}
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return responseListingsbyMakeAndModel;
 	}
 
 }

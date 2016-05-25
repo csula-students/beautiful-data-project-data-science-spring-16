@@ -24,9 +24,9 @@ public class EdmundsService {
 		try {
 			responseMake = Unirest.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=" + getKey())
 					.asJson().getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.print("Source : Edmunds Service");
+			System.out.println(e.toString());
 		}
 
 		return responseMake;
@@ -38,9 +38,9 @@ public class EdmundsService {
 		try {
 			responseCarDetails = Unirest.get("https://api.edmunds.com/api/vehicle/v2/" + strMake + "/" + strModel + "/"
 					+ strYear + "/styles?fmt=json&api_key=" + getKey() + "&view=full").asJson().getBody();
-		} catch (UnirestException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.print("Source : Edmunds Service");
+			System.out.println(e.toString());
 		}
 
 		return responseCarDetails;
@@ -72,50 +72,4 @@ public class EdmundsService {
 		round++;
 		return useKey;
 	}
-
-	// public static JsonNode getModelandYear() {
-	//
-	// JsonNode responseModelandYear = null;
-	// try {
-	// responseModelandYear = Unirest
-	// .get("https://api.edmunds.com/api/vehicle/v2/Acura/models?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseModelandYear;
-	// }
-
-	// public static JsonNode getStyleID() {
-	//
-	// JsonNode responseStyleID = null;
-	// try {
-	// responseStyleID = Unirest
-	// .get("https://api.edmunds.com/api/vehicle/v2/lexus/rx350/2011/styles?fmt=json&api_key=9czdpmae3rqxgx27hp5p9qt5")
-	// .asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseStyleID;
-	// }
-
-	// public static JsonNode getTCOPrice() {
-	//
-	// JsonNode responseTCOPrice = null;
-	// try {
-	// responseTCOPrice = Unirest
-	// // update the link
-	// .get("&api_key=9czdpmae3rqxgx27hp5p9qt5").asJson().getBody();
-	// } catch (UnirestException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	//
-	// return responseTCOPrice;
-	// }
-
 }
