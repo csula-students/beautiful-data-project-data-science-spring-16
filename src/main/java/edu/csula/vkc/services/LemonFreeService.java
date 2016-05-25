@@ -71,7 +71,7 @@ public class LemonFreeService {
 			if (makeName == strMake && modelName == strModel) {
 				responseListingsbyMakeAndModel = responseListings;
 			} else {
-				System.out.println("Lemon Free Service : Query Fired");
+				//System.out.println("Lemon Free Service : Query Fired");
 				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
 				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
 						+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
