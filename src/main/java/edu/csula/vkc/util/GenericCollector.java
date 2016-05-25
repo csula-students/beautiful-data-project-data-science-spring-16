@@ -30,7 +30,6 @@ public class GenericCollector implements Collector<Make, Make> {
 	public Collection<Make> mungee(Collection<Make> makesList) {
 
 		List<Make> makesdataListtoRemove = new ArrayList<Make>();
-		List<Price> Price = new ArrayList<Price>();
 
 		for (Make make : makesList) {
 
