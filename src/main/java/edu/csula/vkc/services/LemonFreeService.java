@@ -2,7 +2,6 @@ package edu.csula.vkc.services;
 
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class LemonFreeService {
 
