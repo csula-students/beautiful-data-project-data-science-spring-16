@@ -1,6 +1,5 @@
 package edu.csula.vkc.apps;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -60,9 +59,6 @@ public class ElasticSearch {
 		}).setBulkActions(5).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
 				.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
 				.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
-
-		// Gson library for sending json to elastic search
-		Gson gson = new Gson();
 
 		try {
 			JsonParser parser = new JsonParser();
