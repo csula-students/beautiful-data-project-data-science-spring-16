@@ -43,7 +43,7 @@ public class VehicleCollector implements Collector<Vehicle, Vehicle>{
 			mongoClient = new MongoClient();
 
 			// select `bd-example` as testing database
-			database = mongoClient.getDatabase("vehicals");
+			database = mongoClient.getDatabase("vehicles");
 
 			// select collection by name `tweets`
 			collection = database.getCollection("collection");
