@@ -160,7 +160,7 @@ public class JsonToElasticSearch {
 				System.out.println("Facing error while importing data to elastic search");
 				failure.printStackTrace();
 			}
-		}).setBulkActions(5).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
+		}).setBulkActions(100).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
 				.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
 				.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
 
@@ -170,16 +170,14 @@ public class JsonToElasticSearch {
 			JsonArray arrayFile = (JsonArray) obj;
 
 			for (int i = 0; i < arrayFile.size(); i++) {
-				System.out.println(arrayFile.get(i).toString()); // This
-																	// statement
-																	// is
-																	// printing
-																	// that..
 
-				JsonObject objcurrent = (JsonObject) arrayFile.get(i);
+				JsonObject objCurrent = (JsonObject) arrayFile.get(i);
+				if (!(Integer.parseInt(objCurrent.get("originalPrice").toString().trim()) < 100)) {
+					System.out.println(arrayFile.get(i).toString());
 
-				bulkProcessor.add(new IndexRequest(indexName, typeName, objcurrent.get("id").getAsString())
-						.source(arrayFile.get(i).toString()));
+					bulkProcessor.add(new IndexRequest(indexName, typeName, objCurrent.get("id").getAsString())
+							.source(arrayFile.get(i).toString()));
+				}
 			}
 			// System.out.println(arrayFile.toString());
 		} catch (Exception e) {
