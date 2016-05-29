@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.csula.vkc.models.Make;
-import edu.csula.vkc.util.GenericCollector;
+import edu.csula.vkc.second.models.Make;
+import edu.csula.vkc.second.util.GenericCollector;
 
 public class CarCollectorTest {
 

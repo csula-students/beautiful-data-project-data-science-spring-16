@@ -2,12 +2,12 @@ package edu.csula.datascience.acquisition;
 
 import com.google.common.collect.Lists;
 
-import edu.csula.vkc.models.Make;
-import edu.csula.vkc.models.Model;
-import edu.csula.vkc.models.Price;
-import edu.csula.vkc.models.Styles;
-import edu.csula.vkc.models.Years;
-import edu.csula.vkc.util.DummySource;
+import edu.csula.vkc.second.models.Make;
+import edu.csula.vkc.second.models.Model;
+import edu.csula.vkc.second.models.Price;
+import edu.csula.vkc.second.models.Styles;
+import edu.csula.vkc.second.models.Years;
+import edu.csula.vkc.second.util.DummySource;
 
 import org.junit.Assert;
 import org.junit.Before;

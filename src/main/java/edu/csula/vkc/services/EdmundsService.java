@@ -3,7 +3,7 @@ package edu.csula.vkc.services;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 
-import edu.csula.vkc.util.WriteToJson;
+import edu.csula.vkc.second.util.WriteToJson;
 
 public class EdmundsService {
 

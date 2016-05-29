@@ -1,10 +1,9 @@
-package edu.csula.datascience.vehicledata;
+package edu.csula.vkc.second.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import edu.csula.datascience.acquisition.MockData;
 import edu.csula.datascience.acquisition.Source;
 import edu.csula.vkc.second.models.MPG;
 import edu.csula.vkc.second.models.Make;
@@ -13,20 +12,25 @@ import edu.csula.vkc.second.models.Price;
 import edu.csula.vkc.second.models.Styles;
 import edu.csula.vkc.second.models.Years;
 
-public class MockCar implements Source<Make>{
+public class DummySource implements Source<Make> {
 
-	int index = 0;
-	
+	long minId;
+
+	public DummySource(long id) {
+		this.minId = id;
+	}
+
 	@Override
-    public boolean hasNext() {
-        return index < 1;
-    }
+	public boolean hasNext() {
+		return minId > 0;
+	}
 
-    @Override
+	@Override
 	public Collection<Make> next() {
+
 		List<Styles> listStyles1 = new ArrayList<>();
-		Styles style1 = new Styles(12, "Acura", 4, new MPG(11.111, 80), new Price(111.111, 11111.8899), "car", 2,
-				"rear", "Automatic", "4 Wheel", "premium unleaded (recommended)", "Base");
+		Styles style1 = new Styles(12, "MarutiLX", 4, new MPG(11.111, 00000), new Price(111.111, 11111.8899), "car", 2,
+				"rear", "10LPg", "hello", "petrol", "MA");
 		listStyles1.add(style1);
 
 		List<Years> listyear = new ArrayList<>();
@@ -34,8 +38,8 @@ public class MockCar implements Source<Make>{
 		listyear.add(year);
 
 		List<Styles> listStyles1a = new ArrayList<>();
-		Styles style1a = new Styles(16, "BMW", 4, new MPG(11.111, 00000), new Price(111.111, 2155111), "car", 4,
-				"front", "Manual", "2 Wheel", "Gasoline", "Advanced");
+		Styles style1a = new Styles(16, "MarutiTX", 4, new MPG(11.111, 00000), new Price(111.111, 2155111), "car", 2,
+				"rear", "10LPg", "hii", "Diesel", "MA");
 		listStyles1a.add(style1a);
 
 		List<Model> listModels = new ArrayList<>();
@@ -46,8 +50,8 @@ public class MockCar implements Source<Make>{
 
 		// 2nd
 		List<Styles> listStyles2 = new ArrayList<>();
-		Styles style2 = new Styles(13, "SwitDesire", 4, new MPG(455.333, 00000), new Price(0, 0), "car", 2, "rear",
-				"10LPg", "hello", "Diesel", "Sw");
+		Styles style2 = new Styles(13, "SwitDesire", 4, new MPG(455.333, 00000), null, "car", 2, "rear", "10LPg",
+				"hello", "Diesel", "Sw");
 		listStyles2.add(style2);
 
 		List<Years> listyear2 = new ArrayList<>();
@@ -62,8 +66,8 @@ public class MockCar implements Source<Make>{
 
 		// 3rd
 		List<Styles> listStyles3 = new ArrayList<>();
-		Styles style3 = new Styles(13, "AudiR8", 4, new MPG(455.333, 00000), new Price(6678.54, 4357), "car", 2, "rear",
-				"10LPg", null, "Diesel", "Sw");
+		Styles style3 = new Styles(13, "AudiR8", 4, new MPG(455.333, 00000), new Price(233456678.00054, 344562662),
+				"car", 2, "rear", "10LPg", null, "Diesel", "Sw");
 		listStyles3.add(style3);
 
 		List<Years> listyear3 = new ArrayList<>();
@@ -78,8 +82,8 @@ public class MockCar implements Source<Make>{
 
 		// 4rd
 		List<Styles> listStyles4 = new ArrayList<>();
-		Styles style4 = new Styles(13, "Ferrari", 4, new MPG(455.333, 00000), new Price(22678.78, 0), "car", 4, "rear",
-				"10LPg", "heelloo", "Diesel", "Sw");
+		Styles style4 = new Styles(13, "Ferrari", 4, new MPG(455.333, 00000), null, "car", 2, "rear", "10LPg",
+				"heelloo", "Diesel", "Sw");
 		listStyles4.add(style4);
 
 		List<Years> listyear4 = new ArrayList<>();
@@ -94,8 +98,8 @@ public class MockCar implements Source<Make>{
 
 		// 5rd
 		List<Styles> listStyles5 = new ArrayList<>();
-		Styles style5 = new Styles(17654, "WagaonR", 4, new MPG(455.333, 00000), new Price(0, 0), "car", 2, "rear",
-				"10LPg", "heelloo", "Diesel", "Sw");
+		Styles style5 = new Styles(17654, "WagaonR", 4, new MPG(455.333, 00000), null, "car", 2, "rear", "10LPg",
+				"heelloo", "Diesel", "Sw");
 		listStyles5.add(style5);
 
 		List<Years> listyear5 = new ArrayList<>();
@@ -110,8 +114,8 @@ public class MockCar implements Source<Make>{
 
 		// 6rd
 		List<Styles> listStyles6 = new ArrayList<>();
-		Styles style6 = new Styles(17654, "JeepLX", 4, new MPG(455.333, 00000), new Price(2678.054, 3362), null, 2,
-				"rear", "10LPg", "heelloo", "Diesel", "Je");
+		Styles style6 = new Styles(17654, "JeepLX", 4, new MPG(455.333, 00000), new Price(233456678.00054, 344562662),
+				null, 2, "rear", "10LPg", "heelloo", "Diesel", "Je");
 		listStyles6.add(style6);
 
 		List<Years> listyear6 = new ArrayList<>();
@@ -124,7 +128,25 @@ public class MockCar implements Source<Make>{
 
 		Make makes6 = new Make(6, 66, "Jeep", "old", listModels6);
 
+		
+		//all properties
+		List<Styles> listStyles7 = new ArrayList<>();
+		Styles style7 = new Styles(1256, "Honda Civic", 4, new MPG(11.111, 456.0), new Price(2345, 111.8), "car", 2,
+				"rear", "10LPg", "automatic", "petrol", "Base");
+		listStyles7.add(style7);
+
+		List<Years> listyear7 = new ArrayList<>();
+		Years year7 = new Years(189, "2013", listStyles7);
+		listyear7.add(year7);
+
+		List<Model> listModels7 = new ArrayList<>();
+		Model model7 = new Model(11, "Honda CIvic LX", listyear7);
+		listModels7.add(model7);
+
+		Make makes7 = new Make(109, 1456, "Honda", "new", listModels7);
+		
 		List<Make> makesall = new ArrayList<>();
+		makesall.add(makes7);
 		makesall.add(makes6);
 		makesall.add(makes5);
 		makesall.add(makes4);
@@ -133,6 +155,7 @@ public class MockCar implements Source<Make>{
 		makesall.add(makes1);
 
 		return makesall;
+
 	}
 
 }
