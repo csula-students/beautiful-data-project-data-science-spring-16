@@ -29,6 +29,7 @@ public class MicrosoftService {
 		} catch (Exception e) {
 			System.out.print("Source : Microsoft Service");
 			System.out.println(e.toString());
+			return 0;
 		}
 		return price;
 	}
