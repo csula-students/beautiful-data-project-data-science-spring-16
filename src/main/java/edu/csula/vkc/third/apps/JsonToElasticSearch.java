@@ -129,7 +129,7 @@ public class JsonToElasticSearch {
 
 	public static void main(String[] args) throws URISyntaxException, IOException {
 		Node node = nodeBuilder()
-				.settings(Settings.builder().put("cluster.name", "elastic-quiz").put("path.home", "elasticsearch-data"))
+				.settings(Settings.builder().put("cluster.name", "elastic-vehicle").put("path.home", "elasticsearch-data"))
 				.node();
 		Client client = node.client();
 
