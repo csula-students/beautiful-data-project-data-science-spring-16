@@ -29,7 +29,7 @@ public class VehicleCollector implements Collector<Vehicle, Vehicle>{
 			}
 		}
 		
-		src.remove(listRemoveVehicle);
+		src.removeAll(listRemoveVehicle);
 		
 		System.out.println("Mungee Count : "+src.size());
 		
