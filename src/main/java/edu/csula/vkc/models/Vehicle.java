@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Vehicle {
 
-	private long _id;
+	private long id;
 	private String makeName;
 	private String modelName;
 	private String year;
@@ -26,11 +26,11 @@ public class Vehicle {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vehicle(long _id, String makeName, String modelName, String year, String vehicleName, int noOfDoors,
+	public Vehicle(long id, String makeName, String modelName, String year, String vehicleName, int noOfDoors,
 			String vehicleType, int noOfCylinder, String engineLocation, String transmission, String driveSystem,
 			String fuelType, String trim, MPG milage, int originalPrice, List<Details> detail) {
 		super();
-		this._id = _id;
+		this.id = id;
 		this.makeName = makeName;
 		this.modelName = modelName;
 		this.year = year;
@@ -48,12 +48,14 @@ public class Vehicle {
 		this.detail = detail;
 	}
 
-	public long get_id() {
-		return _id;
+	
+
+	public long getId() {
+		return id;
 	}
 
-	public void set_id(long _id) {
-		this._id = _id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getMakeName() {
