@@ -3,4 +3,9 @@
 build/
 *.env
 
+.settings/*
+.build
+.project
+.classpath
+
 /bin/
