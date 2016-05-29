@@ -141,7 +141,7 @@ public class JsonToElasticSearch {
 
 		// as usual process to connect to data source, we will need to set up
 		// node and client// to read CSV file from the resource folder
-		String fname = "C:/Users/chitt_000/Documents/data-science-2016/audi.json";
+		String fname = "C:/Users/chitt_000/Documents/data-science-2016/chevrolet.json";
 		File jsonFile = new File(fname);
 
 		// create bulk processor
