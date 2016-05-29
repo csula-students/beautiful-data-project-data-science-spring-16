@@ -120,7 +120,7 @@ public class GenericSource implements Source<Vehicle> {
 					vehicle.setMakeName(make);
 					vehicle.setModelName(model);
 					vehicle.setYear(year);
-					vehicle.setVehicleId(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
+					vehicle.set_id(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
 					vehicle.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
 					vehicle.setNoOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
 					vehicle.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
