@@ -1,5 +1,109 @@
 package edu.csula.vkc.apps;
 
+/*
+ * 
+ PUT /car
+ {
+     "mappings" : {
+         "vehicle" : {
+             "properties" : {
+                 "id" : {
+                     "type" : "long",
+                     "index" : "not_analyzed"
+                 },
+                 "makeName" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "modelName" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                  "vehicleName" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "year": {
+                     "type": "date"
+                 },
+                 "noOfDoors" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 },
+                 "vehicleType" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "noOfCylinder" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 },
+                 "transmission" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "driveSystem" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "fuelType" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "trim" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                "originalPrice" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 },
+                     "milage" : {
+                         "properties":{
+                     "highway" : {
+                         "type" : "double",
+                         "index" : "not_analyzed"
+                     },
+                     "city" : {
+                         "type" : "double",
+                         "index" : "not_analyzed"
+                     }
+                 }
+             },
+             "detail" : {
+                      "properties" : {
+                 "detailId" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "salePrice" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 },
+                 "milesRun" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 },
+                  "source" : {
+                     "type" : "string",
+                     "index" : "not_analyzed"
+                 },
+                 "yearsOld" : {
+                     "type" : "integer",
+                     "index" : "not_analyzed"
+                 }
+             }
+          }
+         }
+         
+     }
+    }
+ 
+ }
+ * 
+ * 
+ */
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -64,15 +168,18 @@ public class ElasticSearch {
 			JsonParser parser = new JsonParser();
 			Object obj = parser.parse(new FileReader(jsonFile));
 			JsonArray arrayFile = (JsonArray) obj;
-			
-			for(int i = 0; i <arrayFile.size(); i++){
-				System.out.println(arrayFile.get(i).toString()); // This statement is printing that..
-				
+
+			for (int i = 0; i < arrayFile.size(); i++) {
+				System.out.println(arrayFile.get(i).toString()); // This
+																	// statement
+																	// is
+																	// printing
+																	// that..
+
 				JsonObject objcurrent = (JsonObject) arrayFile.get(i);
 
 				bulkProcessor.add(new IndexRequest(indexName, typeName, objcurrent.get("id").getAsString())
-                        .source(arrayFile.get(i).toString())
-                    );
+						.source(arrayFile.get(i).toString()));
 			}
 			// System.out.println(arrayFile.toString());
 		} catch (Exception e) {
@@ -82,24 +189,24 @@ public class ElasticSearch {
 		/**
 		 * Structured search
 		 */
-		
+
 		/**
-         * AGGREGATION
-         */
-//        SearchResponse sr = node.client().prepareSearch(indexName)
-//            .setTypes(typeName)
-//            .setQuery(QueryBuilders.matchAllQuery())
-//            .addAggregation(
-//                AggregationBuilders.terms("stateAgg").field("makeName")
-//                    .size(Integer.MAX_VALUE)
-//            )
-//            .execute().actionGet();
-//
-//        // Get your facet results
-//        Terms agg1 = sr.getAggregations().get("stateAgg");
-//
-//        for (Terms.Bucket bucket: agg1.getBuckets()) {
-//            System.out.println(bucket.getKey() + ": " + bucket.getDocCount());
-//        }
+		 * AGGREGATION
+		 */
+		// SearchResponse sr = node.client().prepareSearch(indexName)
+		// .setTypes(typeName)
+		// .setQuery(QueryBuilders.matchAllQuery())
+		// .addAggregation(
+		// AggregationBuilders.terms("stateAgg").field("makeName")
+		// .size(Integer.MAX_VALUE)
+		// )
+		// .execute().actionGet();
+		//
+		// // Get your facet results
+		// Terms agg1 = sr.getAggregations().get("stateAgg");
+		//
+		// for (Terms.Bucket bucket: agg1.getBuckets()) {
+		// System.out.println(bucket.getKey() + ": " + bucket.getDocCount());
+		// }
 	}
 }
