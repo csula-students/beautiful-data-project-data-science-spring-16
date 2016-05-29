@@ -7,7 +7,6 @@ import java.util.Collection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.csula.vkc.second.models.Make;
-import edu.csula.vkc.third.models.Vehicle;
 
 public class WriteToJson {
 
