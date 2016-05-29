@@ -13,7 +13,8 @@ public class LemonFreeService {
 
 		JsonNode responseMake = null;
 		try {
-			responseMake = Unirest.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
+			responseMake = Unirest
+					.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
 					.getBody();
 		} catch (Exception e) {
 			System.out.print("Source : LemonFree Service");
@@ -27,9 +28,8 @@ public class LemonFreeService {
 
 		JsonNode responseModelsByMakeID = null;
 		try {
-			responseModelsByMakeID = Unirest
-					.get("http://api.lemonfree.com/v2/models/?make_id=" + id + "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
-					.getBody();
+			responseModelsByMakeID = Unirest.get("http://api.lemonfree.com/v2/models/?make_id=" + id
+					+ "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson().getBody();
 		} catch (Exception e) {
 			System.out.print("Source : LemonFree Service");
 			System.out.println(e.toString());
@@ -46,7 +46,8 @@ public class LemonFreeService {
 			if (makeName == strMake && modelName == strModel) {
 				responseListingsbyMakeAndModel = responseListings;
 			} else {
-				// System.out.println("Lemon Free Service : Query Fired");
+				//String str = ServiceKeys.getLemonFreeKey();
+				// System.out.println(str);
 				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
 				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
 						+ "&model=" + modelName + "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson().getBody();
