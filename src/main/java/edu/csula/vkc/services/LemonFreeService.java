@@ -5,21 +5,15 @@ import com.mashape.unirest.http.Unirest;
 
 public class LemonFreeService {
 
-	static String keyKuntal = "07859aa5804ac8c1425bdb703ca961ed";
-	static String keyChitta = "93fa1b00fac63ed8fc0317294736f57f";
-	// static String keyVidus = "gfjuzyug6ajpxeejf9tdse48";
-
 	static String strMake;
 	static String strModel;
 	static JsonNode responseListings;
-
-	static int round = 0;
 
 	public static JsonNode getMakes() {
 
 		JsonNode responseMake = null;
 		try {
-			responseMake = Unirest.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + getKey()).asJson()
+			responseMake = Unirest.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
 					.getBody();
 		} catch (Exception e) {
 			System.out.print("Source : LemonFree Service");
@@ -34,7 +28,7 @@ public class LemonFreeService {
 		JsonNode responseModelsByMakeID = null;
 		try {
 			responseModelsByMakeID = Unirest
-					.get("http://api.lemonfree.com/v2/models/?make_id=" + id + "&format=json&key=" + getKey()).asJson()
+					.get("http://api.lemonfree.com/v2/models/?make_id=" + id + "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
 					.getBody();
 		} catch (Exception e) {
 			System.out.print("Source : LemonFree Service");
@@ -55,7 +49,7 @@ public class LemonFreeService {
 				// System.out.println("Lemon Free Service : Query Fired");
 				// System.out.println("http://api.lemonfree.com/v2/listings/?make="+makeName+"&model="+modelName+"&format=json&key=07859aa5804ac8c1425bdb703ca961ed");
 				responseListingsbyMakeAndModel = Unirest.get("http://api.lemonfree.com/v2/listings/?make=" + makeName
-						+ "&model=" + modelName + "&format=json&key=" + getKey()).asJson().getBody();
+						+ "&model=" + modelName + "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson().getBody();
 
 				strMake = makeName;
 				strModel = modelName;
@@ -68,23 +62,4 @@ public class LemonFreeService {
 
 		return responseListingsbyMakeAndModel;
 	}
-
-	private static String getKey() {
-
-		String useKey = "";
-		int intMod = round % 2;
-
-		switch (intMod) {
-		case 0:
-			useKey = keyKuntal;
-			break;
-		case 1:
-			useKey = keyChitta;
-			break;
-		}
-
-		round++;
-		return useKey;
-	}
-
 }
