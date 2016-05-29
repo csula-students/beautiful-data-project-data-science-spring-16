@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import com.google.common.collect.Lists;
 
-import edu.csula.vkc.second.util.VehicleCollector;
 import edu.csula.vkc.third.models.Vehicle;
 import edu.csula.vkc.third.util.GenericSource;
+import edu.csula.vkc.third.util.VehicleCollector;
 
 public class TheOne {
 
