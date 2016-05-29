@@ -179,6 +179,8 @@ public class GenericSource implements Source<Vehicle> {
 								det.setSource("Edmunds");
 								det.setYearsOld(0);
 							}
+							
+							listDetails.add(det);
 
 							//Further objects of price as per LemonFree api.
 							for (int m = 0; m < arrayDetails.length(); m++) {
