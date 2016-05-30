@@ -8,7 +8,6 @@ build/
 .project
 .classpath
 
-/src/main/java/edu/csula/vkc/services/ServiceKeys.java
 /elasticsearch-data
 
 /bin/
