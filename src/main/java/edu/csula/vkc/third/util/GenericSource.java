@@ -126,7 +126,8 @@ public class GenericSource implements Source<Vehicle> {
 					vehicle.setNoOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
 					vehicle.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
 					vehicle.setVehicleName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
-
+					vehicle.setTmv(jsonStyle.getJSONObject("price").has("usedTmvRetail")
+							? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
 					if (jsonStyle.has("MPG")) {
 						vehicle.setMilage(new MPG(
 								(jsonStyle.getJSONObject("MPG").has("highway")
@@ -141,6 +142,8 @@ public class GenericSource implements Source<Vehicle> {
 						vehicle.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")
 								? jsonStyle.getJSONObject("engine").getString("fuelType") : null);
 					}
+					
+					
 
 					// Get original price for the car..
 					vehicle.setOriginalPrice(MicrosoftService.getPrice(make, model, year));
@@ -177,6 +180,7 @@ public class GenericSource implements Source<Vehicle> {
 								det.setMilesRun(0);
 								det.setSalePrice(jsonStyle.getJSONObject("price").has("usedTmvRetail")
 										? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
+								
 								det.setSource("Edmunds");
 								det.setYearsOld(0);
 							}
