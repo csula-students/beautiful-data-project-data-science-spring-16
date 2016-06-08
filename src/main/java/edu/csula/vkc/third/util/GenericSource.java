@@ -87,11 +87,11 @@ public class GenericSource implements Source<Vehicle> {
 					listVehicle.addAll(getVehicleDetails(jsonMake.getString("niceName").toString(),
 							jsonModel.getString("name").toString(), jsonYear.get("year").toString()));
 				}
-				//Write file as per models
+				// Write file as per models
 				writer.writeNewVehicleFile(jsonMake.getString("niceName").toString().replace(" ", "-"),
 						jsonModel.getString("name").toString().replace(" ", "-"), listVehicle);
 			}
-			//Write file as per make.
+			// Write file as per make.
 			writer.writeNewVehicleFile(jsonMake.getString("niceName").toString(), listVehicle);
 		} catch (Exception e) {
 			throw e;
@@ -142,8 +142,6 @@ public class GenericSource implements Source<Vehicle> {
 						vehicle.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")
 								? jsonStyle.getJSONObject("engine").getString("fuelType") : null);
 					}
-					
-					
 
 					// Get original price for the car..
 					vehicle.setOriginalPrice(MicrosoftService.getPrice(make, model, year));
@@ -161,10 +159,10 @@ public class GenericSource implements Source<Vehicle> {
 								? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
 					}
 
-					//Call to Lemon Free API for car listings.
+					// Call to Lemon Free API for car listings.
 					JsonNode nodeLemon = LemonFreeService.getListingsbyMakeAndModel(strMakeModified, strModelModified);
 
-					//Checking if there are listings.
+					// Checking if there are listings.
 					if (nodeLemon.getObject().getJSONObject("response").getInt("response_code") == 0) {
 						if (nodeLemon.getObject().getJSONObject("response").getJSONObject("result").has("listings")) {
 							JSONArray arrayDetails = (JSONArray) nodeLemon.getObject().getJSONObject("response")
@@ -172,58 +170,32 @@ public class GenericSource implements Source<Vehicle> {
 
 							List<Details> listDetails = Lists.newArrayList();
 
-							//Default object for Edmunds TMZ price
-							
-							/*Details det = new Details();
-
-							if (jsonStyle.has("price")) {
-								det.setDetailId("0");
-								det.setMilesRun(0);
-								det.setSalePrice(jsonStyle.getJSONObject("price").has("usedTmvRetail")
-										? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
-								
-								det.setSource("Edmunds");
-								det.setYearsOld(0);
-							}
-							
-							listDetails.add(det);*/
-
-							//Further objects of price as per LemonFree api.
+							// Further objects of price as per LemonFree api.
 							for (int m = 0; m < arrayDetails.length(); m++) {
 
 								JSONObject objDetails = arrayDetails.getJSONObject(m);
-								
+
 								// If the Trim is empty it will be set to Base.
 								if (objDetails.get("trim") == "" || objDetails.get("trim").equals(null)) {
 									objDetails.put("trim", arrayStyles.getJSONObject(l).get("trim"));
 								}
 
-								//Check if there are direct objects.
+								// Check if there are direct objects.
 								if ((objDetails.getInt("year") == (Integer.parseInt(year)) && vehicle.getTrim()
 										.toLowerCase().equals(objDetails.getString("trim").toLowerCase()))) {
-									Details details = new Details();
 
-									details.setDetailId(objDetails.getString("id"));
-									details.setMilesRun(
-											objDetails.has("mileage") && !objDetails.get("mileage").equals("")
-													? objDetails.getInt("mileage") : 0);
-									details.setSalePrice(objDetails.has("price") && !objDetails.get("price").equals("")
-											? objDetails.getInt("price") : 0);
-									details.setSource("LemonFree");
-									details.setYearsOld(0);
-
-									System.out.println(
-											"\t \t \t " + details.getSource() + " : " + objDetails.getString("trim"));
-
+									Details details = getDetails(objDetails);
+									
 									listDetails.add(details);
 								} else {
-									
-									//Further code for improvements if the trim name are different.
+
+									// Further code for improvements if the trim
+									// name are different.
 									if (objDetails.getInt("year") == (Integer.parseInt(year))) {
 										String strVehicleTrim = "Edmunds";
 										String strSecondTrim = "Second";
-										
-										//check if trim contains quattro
+
+										// check if trim contains quattro
 										if (vehicle.getTrim().contains("quattro")) {
 											strVehicleTrim = vehicle.getTrim().replace("quattro", "").toLowerCase()
 													.trim();
@@ -231,30 +203,18 @@ public class GenericSource implements Source<Vehicle> {
 													.toLowerCase();
 										}
 
-										//Check if trim contains PZEV.
+										// Check if trim contains PZEV.
 										if (vehicle.getTrim().contains("PZEV")) {
 											strVehicleTrim = vehicle.getTrim().replace("PZEV", "").toLowerCase().trim();
 											strSecondTrim = objDetails.getString("trim").replace("PZEV ", "")
 													.toLowerCase();
 										}
 
-										//Object creating if names are same after improvements.
+										// Object creating if names are same
+										// after improvements.
 										if (strVehicleTrim.equals(strSecondTrim)) {
 
-											Details details = new Details();
-
-											details.setDetailId(objDetails.getString("id"));
-											details.setMilesRun(
-													objDetails.has("mileage") && !objDetails.get("mileage").equals("")
-															? objDetails.getInt("mileage") : 0);
-											details.setSalePrice(
-													objDetails.has("price") && !objDetails.get("price").equals("")
-															? objDetails.getInt("price") : 0);
-											details.setSource("LemonFree");
-											details.setYearsOld(0);
-
-											System.out.println("\t \t \t " + details.getSource() + " : "
-													+ objDetails.getString("trim"));
+											Details details = getDetails(objDetails);
 
 											listDetails.add(details);
 										}
@@ -274,4 +234,25 @@ public class GenericSource implements Source<Vehicle> {
 		}
 		return listVehicle;
 	}
+
+	//To Parse and Object details into JOSNObject.
+	private Details getDetails(JSONObject objDetails) {
+		Details details = new Details();
+		try {
+
+			details.setDetailId(objDetails.getString("id"));
+			details.setMilesRun(objDetails.has("mileage") && !objDetails.get("mileage").equals("")
+					? objDetails.getInt("mileage") : 0);
+			details.setSalePrice(
+					objDetails.has("price") && !objDetails.get("price").equals("") ? objDetails.getInt("price") : 0);
+			details.setSource("LemonFree");
+			details.setYearsOld(0);
+
+			System.out.println("\t \t \t " + details.getSource() + " : " + objDetails.getString("trim"));
+		} catch (Exception ex) {
+			
+		}
+		return details;
+	}
+
 }
