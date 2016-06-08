@@ -128,6 +128,7 @@ public class GenericSource implements Source<Vehicle> {
 					vehicle.setVehicleName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
 					vehicle.setTmv(jsonStyle.getJSONObject("price").has("usedTmvRetail")
 							? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
+					
 					if (jsonStyle.has("MPG")) {
 						vehicle.setMilage(new MPG(
 								(jsonStyle.getJSONObject("MPG").has("highway")
@@ -184,7 +185,7 @@ public class GenericSource implements Source<Vehicle> {
 								if ((objDetails.getInt("year") == (Integer.parseInt(year)) && vehicle.getTrim()
 										.toLowerCase().equals(objDetails.getString("trim").toLowerCase()))) {
 
-									Details details = getDetails(objDetails);
+									Details details = getLemonFreeDetails(objDetails);
 									
 									listDetails.add(details);
 								} else {
@@ -214,7 +215,7 @@ public class GenericSource implements Source<Vehicle> {
 										// after improvements.
 										if (strVehicleTrim.equals(strSecondTrim)) {
 
-											Details details = getDetails(objDetails);
+											Details details = getLemonFreeDetails(objDetails);
 
 											listDetails.add(details);
 										}
@@ -224,7 +225,6 @@ public class GenericSource implements Source<Vehicle> {
 							vehicle.setDetail(listDetails);
 						}
 					}
-
 					listVehicle.add(vehicle);
 					Thread.sleep(50);
 				}
@@ -236,10 +236,9 @@ public class GenericSource implements Source<Vehicle> {
 	}
 
 	//To Parse and Object details into JOSNObject.
-	private Details getDetails(JSONObject objDetails) {
+	private Details getLemonFreeDetails(JSONObject objDetails) {
 		Details details = new Details();
 		try {
-
 			details.setDetailId(objDetails.getString("id"));
 			details.setMilesRun(objDetails.has("mileage") && !objDetails.get("mileage").equals("")
 					? objDetails.getInt("mileage") : 0);
@@ -250,7 +249,7 @@ public class GenericSource implements Source<Vehicle> {
 
 			System.out.println("\t \t \t " + details.getSource() + " : " + objDetails.getString("trim"));
 		} catch (Exception ex) {
-			
+			throw ex;
 		}
 		return details;
 	}
