@@ -21,6 +21,7 @@ public class Vehicle {
 	private String trim;
 	private MPG milage;
 	private int originalPrice;
+	private int tmv;
 	private List<Details> detail;
 
 	public Vehicle() {
@@ -30,7 +31,7 @@ public class Vehicle {
 
 	public Vehicle(long id, String makeName, String modelName, String year, String vehicleName, int noOfDoors,
 			String vehicleType, int noOfCylinder, String engineLocation, String transmission, String driveSystem,
-			String fuelType, String trim, MPG milage, int originalPrice, List<Details> detail) {
+			String fuelType, String trim, MPG milage, int originalPrice, int tmv, List<Details> detail) {
 		super();
 		this.id = id;
 		this.makeName = makeName;
@@ -47,10 +48,9 @@ public class Vehicle {
 		this.trim = trim;
 		this.milage = milage;
 		this.originalPrice = originalPrice;
+		this.tmv = tmv;
 		this.detail = detail;
 	}
-
-	
 
 	public long getId() {
 		return id;
@@ -172,6 +172,14 @@ public class Vehicle {
 		this.originalPrice = originalPrice;
 	}
 
+	public int getTmv() {
+		return tmv;
+	}
+
+	public void setTmv(int tmv) {
+		this.tmv = tmv;
+	}
+
 	public List<Details> getDetail() {
 		return detail;
 	}
@@ -179,7 +187,5 @@ public class Vehicle {
 	public void setDetail(List<Details> detail) {
 		this.detail = detail;
 	}
-
-	
 
 }
