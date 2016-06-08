@@ -173,7 +173,8 @@ public class GenericSource implements Source<Vehicle> {
 							List<Details> listDetails = Lists.newArrayList();
 
 							//Default object for Edmunds TMZ price
-							Details det = new Details();
+							
+							/*Details det = new Details();
 
 							if (jsonStyle.has("price")) {
 								det.setDetailId("0");
@@ -185,13 +186,13 @@ public class GenericSource implements Source<Vehicle> {
 								det.setYearsOld(0);
 							}
 							
-							listDetails.add(det);
+							listDetails.add(det);*/
 
 							//Further objects of price as per LemonFree api.
 							for (int m = 0; m < arrayDetails.length(); m++) {
 
 								JSONObject objDetails = arrayDetails.getJSONObject(m);
-
+								
 								// If the Trim is empty it will be set to Base.
 								if (objDetails.get("trim") == "" || objDetails.get("trim").equals(null)) {
 									objDetails.put("trim", arrayStyles.getJSONObject(l).get("trim"));
