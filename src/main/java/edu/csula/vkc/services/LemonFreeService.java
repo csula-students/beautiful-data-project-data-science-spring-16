@@ -17,7 +17,7 @@ public class LemonFreeService {
 					.get("http://api.lemonfree.com/v2/makes/?format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson()
 					.getBody();
 		} catch (Exception e) {
-			System.out.print("Source : LemonFree Service");
+			System.out.print("Source : LemonFree Service ");
 			System.out.println(e.toString());
 		}
 
@@ -31,7 +31,7 @@ public class LemonFreeService {
 			responseModelsByMakeID = Unirest.get("http://api.lemonfree.com/v2/models/?make_id=" + id
 					+ "&format=json&key=" + ServiceKeys.getLemonFreeKey()).asJson().getBody();
 		} catch (Exception e) {
-			System.out.print("Source : LemonFree Service");
+			System.out.print("Source : LemonFree Service ");
 			System.out.println(e.toString());
 		}
 
@@ -57,7 +57,7 @@ public class LemonFreeService {
 				responseListings = responseListingsbyMakeAndModel;
 			}
 		} catch (Exception e) {
-			System.out.print("Source : LemonFree Service");
+			System.out.print("Source : LemonFree Service ");
 			System.out.println(e.toString());
 		}
 
