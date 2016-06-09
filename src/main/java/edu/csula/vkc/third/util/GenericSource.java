@@ -9,6 +9,7 @@ import edu.csula.datascience.acquisition.Source;
 import edu.csula.vkc.services.EdmundsService;
 import edu.csula.vkc.services.LemonFreeService;
 import edu.csula.vkc.services.MicrosoftService;
+import edu.csula.vkc.services.TrueCarService;
 import edu.csula.vkc.third.models.MPG;
 import edu.csula.vkc.third.models.Details;
 import edu.csula.vkc.third.models.Vehicle;
@@ -160,6 +161,8 @@ public class GenericSource implements Source<Vehicle> {
 								? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
 					}
 
+					List<Details> listDetails = Lists.newArrayList();
+					
 					// Call to Lemon Free API for car listings.
 					JsonNode nodeLemon = LemonFreeService.getListingsbyMakeAndModel(strMakeModified, strModelModified);
 
@@ -168,8 +171,6 @@ public class GenericSource implements Source<Vehicle> {
 						if (nodeLemon.getObject().getJSONObject("response").getJSONObject("result").has("listings")) {
 							JSONArray arrayDetails = (JSONArray) nodeLemon.getObject().getJSONObject("response")
 									.getJSONObject("result").getJSONArray("listings");
-
-							List<Details> listDetails = Lists.newArrayList();
 
 							// Further objects of price as per LemonFree api.
 							for (int m = 0; m < arrayDetails.length(); m++) {
@@ -185,9 +186,11 @@ public class GenericSource implements Source<Vehicle> {
 								if ((objDetails.getInt("year") == (Integer.parseInt(year)) && vehicle.getTrim()
 										.toLowerCase().equals(objDetails.getString("trim").toLowerCase()))) {
 
+									if(objDetails.has("price") && !objDetails.get("price").equals("")){
 									Details details = getLemonFreeDetails(objDetails);
 									
 									listDetails.add(details);
+									}
 								} else {
 
 									// Further code for improvements if the trim
@@ -213,18 +216,28 @@ public class GenericSource implements Source<Vehicle> {
 
 										// Object creating if names are same
 										// after improvements.
-										if (strVehicleTrim.equals(strSecondTrim)) {
+										if (strVehicleTrim.equals(strSecondTrim) && (objDetails.has("price") && !objDetails.get("price").equals(""))) {
 
 											Details details = getLemonFreeDetails(objDetails);
-
 											listDetails.add(details);
 										}
 									}
 								}
 							}
-							vehicle.setDetail(listDetails);
 						}
 					}
+					
+					List<Details> trueCar = TrueCarService.getListing(make, model);
+					
+					for (Details details : trueCar) {
+						if(Integer.parseInt(year)== details.getYearsOld()){
+							System.out.println("\t \t \t True Car Added." + jsonStyle.getString("trim"));
+							listDetails.add(details);
+						}
+					}
+					
+					vehicle.setDetail(listDetails);
+					
 					listVehicle.add(vehicle);
 					Thread.sleep(50);
 				}
@@ -253,5 +266,4 @@ public class GenericSource implements Source<Vehicle> {
 		}
 		return details;
 	}
-
 }
