@@ -16,7 +16,7 @@ public class EdmundsService {
 			responseMake = Unirest.get("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=" + ServiceKeys.getEdmundsKey())
 					.asJson().getBody();
 		} catch (Exception e) {
-			System.out.print("Source : Edmunds Service");
+			System.out.print("Source : Edmunds Service ");
 			System.out.println(e.toString());
 		}
 
@@ -30,7 +30,7 @@ public class EdmundsService {
 			responseCarDetails = Unirest.get("https://api.edmunds.com/api/vehicle/v2/" + strMake + "/" + strModel + "/"
 					+ strYear + "/styles?fmt=json&api_key=" + ServiceKeys.getEdmundsKey() + "&view=full").asJson().getBody();
 		} catch (Exception e) {
-			System.out.print("Source : Edmunds Service");
+			System.out.print("Source : Edmunds Service ");
 			System.out.println(e.toString());
 		}
 
