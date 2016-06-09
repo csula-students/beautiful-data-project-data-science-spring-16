@@ -19,24 +19,24 @@ public class TrueCarService {
 		try {
 
 			if (!makeName.equals(strMake) && !modelName.equals(strModel)) {
-				
-				System.out.println("Executing If.");
+
+				// System.out.println("Executing If.");
 				strMake = makeName;
 				strModel = modelName;
-				
+
 				// Code if the request is being made for first time.
 				String firstURL = "https://www.truecar.com/used-cars-for-sale/listings/"
 						+ makeName.replace(" ", "-").toLowerCase() + "/" + modelName.replace(" ", "-").toLowerCase()
 						+ "/";
 
-				System.out.println(firstURL);
+				// System.out.println(firstURL);
 				Document docu = Jsoup.connect(firstURL).timeout(7000).get();
 				Elements pages = docu.getElementsByClass("pagination");
 				Elements links = pages.select("a[href]");
 				// System.out.println(links);
 				// System.out.println(links.last().attr("data-page-index"));
 				int noPages = Integer.parseInt(links.last().attr("data-page-index"));
-				System.out.println("Number of True car pages for this car : " + noPages);
+				//System.out.println("Number of True car pages for this car : " + noPages);
 				for (int i = 1; i <= noPages; i++) {
 
 					String urlString = "https://www.truecar.com/used-cars-for-sale/listings/"
@@ -55,6 +55,7 @@ public class TrueCarService {
 
 						Elements strYear = element.getElementsByClass("vdp-link");
 
+						//System.out.println(strYear);
 						for (Element elem : strYear) {
 							if (elem.hasText() && !elem.text().equals("View Details")) {
 								// System.out.println("Year : " + elem.text());
@@ -64,7 +65,7 @@ public class TrueCarService {
 
 						Elements strVehicleInfo = element.getElementsByClass("vehicle-info");
 
-						// System.out.println(strVehicleInfo);
+						//System.out.println(strVehicleInfo);
 						for (Element elem : strVehicleInfo) {
 							if (elem.text().contains("miles")) {
 								// System.out.println("Miles : " +
@@ -95,7 +96,7 @@ public class TrueCarService {
 				}
 			} else {
 				// Code if the request has been already made.
-				System.out.println("Executing else");
+				// System.out.println("Executing else");
 			}
 		} catch (Exception e) {
 			System.out.print("Source : TrueCar Service ");
