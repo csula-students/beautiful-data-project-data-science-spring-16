@@ -60,6 +60,7 @@ public class TrueCarService {
 							if (elem.hasText() && !elem.text().equals("View Details")) {
 								// System.out.println("Year : " + elem.text());
 								details.setYearsOld(Integer.parseInt(elem.text().substring(0, 4)));
+								details.setDetailId(elem.toString().substring(elem.toString().indexOf("listing")+8, elem.toString().indexOf("/", elem.toString().indexOf("listing")+8)));
 							}
 						}
 
