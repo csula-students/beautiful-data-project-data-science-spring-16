@@ -20,7 +20,8 @@ public class Vehicle {
 	private String fuelType;
 	private String trim;
 	private MPG milage;
-	private int originalPrice;
+	private int minOriginalPrice;
+	private int maxOriginalPrice;
 	private int tmv;
 	private List<Details> detail;
 
@@ -31,7 +32,7 @@ public class Vehicle {
 
 	public Vehicle(long id, String makeName, String modelName, String year, String vehicleName, int noOfDoors,
 			String vehicleType, int noOfCylinder, String engineLocation, String transmission, String driveSystem,
-			String fuelType, String trim, MPG milage, int originalPrice, int tmv, List<Details> detail) {
+			String fuelType, String trim, MPG milage, int minOriginalPrice,int maxOriginalPrice, int tmv, List<Details> detail) {
 		super();
 		this.id = id;
 		this.makeName = makeName;
@@ -47,7 +48,8 @@ public class Vehicle {
 		this.fuelType = fuelType;
 		this.trim = trim;
 		this.milage = milage;
-		this.originalPrice = originalPrice;
+		this.minOriginalPrice = minOriginalPrice;
+		this.maxOriginalPrice = maxOriginalPrice;
 		this.tmv = tmv;
 		this.detail = detail;
 	}
@@ -164,12 +166,22 @@ public class Vehicle {
 		this.milage = milage;
 	}
 
-	public int getOriginalPrice() {
-		return originalPrice;
+	
+
+	public int getMinOriginalPrice() {
+		return minOriginalPrice;
 	}
 
-	public void setOriginalPrice(int originalPrice) {
-		this.originalPrice = originalPrice;
+	public void setMinOriginalPrice(int minOriginalPrice) {
+		this.minOriginalPrice = minOriginalPrice;
+	}
+
+	public int getMaxOriginalPrice() {
+		return maxOriginalPrice;
+	}
+
+	public void setMaxOriginalPrice(int maxOriginalPrice) {
+		this.maxOriginalPrice = maxOriginalPrice;
 	}
 
 	public int getTmv() {
