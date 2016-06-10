@@ -151,7 +151,7 @@ public class GenericSource implements Source<Vehicle> {
 					}
 
 					// Get original price for the car..
-					vehicle.setOriginalPrice(MicrosoftService.getPrice(make, model, year));
+					vehicle.setMaxOriginalPrice(MicrosoftService.getPrice(make, model, year));
 
 					if (jsonStyle.has("submodel")) {
 						vehicle.setVehicleType(jsonStyle.getJSONObject("submodel").has("body")
