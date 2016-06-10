@@ -21,7 +21,7 @@ public class GenericSource implements Source<Vehicle> {
 	WriteToJson writer;
 
 	JSONArray arrMakes;
-	int currentMake = 3;
+	int currentMake = 0;
 
 	public GenericSource() {
 		super();
