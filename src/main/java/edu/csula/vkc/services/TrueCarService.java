@@ -12,7 +12,7 @@ public class TrueCarService {
 
 	static String strMake = "";
 	static String strModel = "";
-	static List<Details> lstDetails = Lists.newArrayList();
+	static List<Details> lstDetails;
 
 	public static List<Details> getListing(String makeName, String modelName) {
 
@@ -21,6 +21,7 @@ public class TrueCarService {
 			if (!makeName.equals(strMake) || !modelName.equals(strModel)) {
 
 				// System.out.println("Executing If.");
+				lstDetails = Lists.newArrayList();
 				strMake = makeName;
 				strModel = modelName;
 
