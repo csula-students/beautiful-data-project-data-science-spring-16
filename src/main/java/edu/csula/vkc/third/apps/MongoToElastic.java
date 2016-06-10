@@ -33,9 +33,9 @@ public class MongoToElastic {
 	static MongoClient mongoClient;
 	static MongoDatabase database;
 	static MongoCollection<Document> collection;
-	
+
 	public static void main(String[] args) {
-		
+
 		mongoClient = new MongoClient();
 		database = mongoClient.getDatabase("vehicles");
 		collection = database.getCollection("collection");
@@ -66,28 +66,26 @@ public class MongoToElastic {
 				.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
 				.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
 
-		 // Gson library for sending json to elastic search
-        Gson gson = new Gson();
-        
+		// Gson library for sending json to elastic search
+		Gson gson = new Gson();
+
 		try {
-			
+
 			cursor = collection.find();
-			
+
 			ObjectMapper mapper = new ObjectMapper();
-			
-			for (Document doc: cursor) {
+
+			for (Document doc : cursor) {
 
 				doc.remove("_id");
 
 				Vehicle vehicle = mapper.readValue(doc.toJson(), Vehicle.class);
 
-				if (!(vehicle.getOriginalPrice() < 100)) {
-					System.out.println(doc.toString());
-					//System.out.println(doc.toJson().toString());
+				System.out.println(doc.toString());
+				// System.out.println(doc.toJson().toString());
 
-					bulkProcessor.add(new IndexRequest(indexName, typeName, String.valueOf(vehicle.getId()))
-							.source(gson.toJson(vehicle)));
-				}
+				bulkProcessor.add(new IndexRequest(indexName, typeName, String.valueOf(vehicle.getId()))
+						.source(gson.toJson(vehicle)));
 			}
 			// System.out.println(arrayFile.toString());
 		} catch (Exception e) {
