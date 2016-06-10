@@ -1,13 +1,8 @@
 package edu.csula.vkc.third.apps;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import com.google.common.collect.Lists;
-
-import edu.csula.vkc.services.MicrosoftService;
-import edu.csula.vkc.services.TrueCarService;
-import edu.csula.vkc.third.models.Details;
 import edu.csula.vkc.third.models.Vehicle;
 import edu.csula.vkc.third.util.GenericSource;
 import edu.csula.vkc.third.util.VehicleCollector;
