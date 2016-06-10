@@ -15,15 +15,18 @@ public class TrueCarService1 {
 			String urlString = "https://www.truecar.com/used-cars-for-sale/listings/"
 					+ makeName.replace(" ", "-").toLowerCase() + "/" + modelName.replace(" ", "-").toLowerCase() + "/";
 
-			// System.out.println(urlString);
+			System.out.println(urlString);
 			Document doc = Jsoup.connect(urlString).timeout(7000).get();
 
-			Elements prices = doc.getElementsByClass("price");
+			Elements link = doc.getElementsByClass("vdp-link");
 
-			for (Element element : prices) {
-					if(element.hasText())
-					System.out.println(element.text().replace("$", "").replace(",", "").trim());
+			for (Element elem : link) {
+				if (elem.hasText() && elem.text().equals("View Details")) {
+					System.out.println(elem);
+					
+					System.out.println(elem.toString().substring(elem.toString().indexOf("listing")+8, elem.toString().indexOf("/", elem.toString().indexOf("listing")+8)));
 				}
+			}
 				
 			
 
@@ -37,7 +40,7 @@ public class TrueCarService1 {
 		} catch (
 
 		Exception e) {
-			System.out.print("Source : Microsoft Service");
+			System.out.print("Source : True Car Service ");
 			System.out.println(e.toString());
 			return 0;
 		}
