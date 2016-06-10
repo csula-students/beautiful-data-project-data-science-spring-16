@@ -116,136 +116,101 @@ public class GenericSource implements Source<Vehicle> {
 				String strMakeModified = make.replace(" ", "%20").replace("-", "%20").trim();
 				String strModelModified = model.replace(" ", "%20").replace("-", "%20").trim();
 
-				for (int l = 0; l < arrayStyles.length(); l++) {
-					JSONObject jsonStyle = arrayStyles.getJSONObject(l);
+				JSONObject jsonStyle = arrayStyles.getJSONObject(1);
 
-					Vehicle vehicle = new Vehicle();
+				Vehicle vehicle = new Vehicle();
 
-					vehicle.setMakeName(make);
-					vehicle.setModelName(model);
-					vehicle.setYear(year);
-					vehicle.setId(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
-					vehicle.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
-					vehicle.setNoOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
-					vehicle.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
-					vehicle.setVehicleName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
-					
-					if(jsonStyle.has("price")){
+				vehicle.setMakeName(make);
+				vehicle.setModelName(model);
+				vehicle.setYear(year);
+				vehicle.setId(jsonStyle.has("id") ? jsonStyle.getLong("id") : 0);
+				vehicle.setDriveSystem(jsonStyle.has("drivenWheels") ? jsonStyle.getString("drivenWheels") : null);
+				vehicle.setNoOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
+				vehicle.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
+				vehicle.setVehicleName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
+
+				if (jsonStyle.has("price")) {
 					vehicle.setTmv(jsonStyle.getJSONObject("price").has("usedTmvRetail")
 							? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
-					}
-					
-					if (jsonStyle.has("MPG")) {
-						vehicle.setMilage(new MPG(
-								(jsonStyle.getJSONObject("MPG").has("highway")
-										? jsonStyle.getJSONObject("MPG").getDouble("highway") : 0.0),
-								(jsonStyle.getJSONObject("MPG").has("city")
-										? jsonStyle.getJSONObject("MPG").getDouble("city") : 0.0)));
-					}
-					if (jsonStyle.has("engine")) {
-						vehicle.setNoOfCylinder((jsonStyle.getJSONObject("engine").has("cylinder")
-								? jsonStyle.getJSONObject("engine").getInt("cylinder") : 0));
-						// style.setEngineLocation(jsonStyle.getJSONObject("engine").getString(""));
-						vehicle.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")
-								? jsonStyle.getJSONObject("engine").getString("fuelType") : null);
-					}
+				}
 
-					// Get original price for the car..
-					vehicle.setMaxOriginalPrice(MicrosoftService.getPrice(make, model, year));
+				if (jsonStyle.has("MPG")) {
+					vehicle.setMilage(new MPG(
+							(jsonStyle.getJSONObject("MPG").has("highway")
+									? jsonStyle.getJSONObject("MPG").getDouble("highway") : 0.0),
+							(jsonStyle.getJSONObject("MPG").has("city")
+									? jsonStyle.getJSONObject("MPG").getDouble("city") : 0.0)));
+				}
+				if (jsonStyle.has("engine")) {
+					vehicle.setNoOfCylinder((jsonStyle.getJSONObject("engine").has("cylinder")
+							? jsonStyle.getJSONObject("engine").getInt("cylinder") : 0));
+					// style.setEngineLocation(jsonStyle.getJSONObject("engine").getString(""));
+					vehicle.setFuelType(jsonStyle.getJSONObject("engine").has("fuelType")
+							? jsonStyle.getJSONObject("engine").getString("fuelType") : null);
+				}
 
-					if (jsonStyle.has("submodel")) {
-						vehicle.setVehicleType(jsonStyle.getJSONObject("submodel").has("body")
-								? jsonStyle.getJSONObject("submodel").getString("body") : null);
-					}
+				// Get original price for the car..
+				vehicle.setMaxOriginalPrice(MicrosoftService.getMaxPrice(make, model, year));
+				vehicle.setMinOriginalPrice(MicrosoftService.getMinPrice(make, model, year));
 
-					// Just for checking.
-					System.out.println("\t \t \t " + vehicle.getTrim());
+				if (jsonStyle.has("submodel")) {
+					vehicle.setVehicleType(jsonStyle.getJSONObject("submodel").has("body")
+							? jsonStyle.getJSONObject("submodel").getString("body") : null);
+				}
 
-					if (jsonStyle.has("transmission")) {
-						vehicle.setTransmission(jsonStyle.getJSONObject("transmission").has("transmissionType")
-								? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
-					}
+				// Just for checking.
+				System.out.println("\t \t \t " + vehicle.getTrim());
 
-					List<Details> listDetails = Lists.newArrayList();
-					
-					// Call to Lemon Free API for car listings.
-					JsonNode nodeLemon = LemonFreeService.getListingsbyMakeAndModel(strMakeModified, strModelModified);
+				if (jsonStyle.has("transmission")) {
+					vehicle.setTransmission(jsonStyle.getJSONObject("transmission").has("transmissionType")
+							? jsonStyle.getJSONObject("transmission").getString("transmissionType") : null);
+				}
 
-					// Checking if there are listings.
-					if (nodeLemon.getObject().getJSONObject("response").getInt("response_code") == 0) {
-						if (nodeLemon.getObject().getJSONObject("response").getJSONObject("result").has("listings")) {
-							JSONArray arrayDetails = (JSONArray) nodeLemon.getObject().getJSONObject("response")
-									.getJSONObject("result").getJSONArray("listings");
+				List<Details> listDetails = Lists.newArrayList();
 
-							// Further objects of price as per LemonFree api.
-							for (int m = 0; m < arrayDetails.length(); m++) {
+				// Call to Lemon Free API for car listings.
+				JsonNode nodeLemon = LemonFreeService.getListingsbyMakeAndModel(strMakeModified, strModelModified);
 
-								JSONObject objDetails = arrayDetails.getJSONObject(m);
+				// Checking if there are listings.
+				if (nodeLemon.getObject().getJSONObject("response").getInt("response_code") == 0) {
+					if (nodeLemon.getObject().getJSONObject("response").getJSONObject("result").has("listings")) {
+						JSONArray arrayDetails = (JSONArray) nodeLemon.getObject().getJSONObject("response")
+								.getJSONObject("result").getJSONArray("listings");
 
-								// If the Trim is empty it will be set to Base.
-								if (objDetails.get("trim") == "" || objDetails.get("trim").equals(null)) {
-									objDetails.put("trim", arrayStyles.getJSONObject(l).get("trim"));
-								}
+						// Further objects of price as per LemonFree api.
+						for (int m = 0; m < arrayDetails.length(); m++) {
 
-								// Check if there are direct objects.
-								if ((objDetails.getInt("year") == (Integer.parseInt(year)) && vehicle.getTrim()
-										.toLowerCase().equals(objDetails.getString("trim").toLowerCase()))) {
+							JSONObject objDetails = arrayDetails.getJSONObject(m);
 
-									if(objDetails.has("price") && !objDetails.get("price").equals("")){
+							// Check if there are direct objects.
+							if ((objDetails.getInt("year") == (Integer.parseInt(year)))) {
+
+								if (objDetails.has("price") && !objDetails.get("price").equals("")) {
 									Details details = getLemonFreeDetails(objDetails);
-									
+
 									listDetails.add(details);
-									}
-								} else {
-
-									// Further code for improvements if the trim
-									// name are different.
-									if (objDetails.getInt("year") == (Integer.parseInt(year))) {
-										String strVehicleTrim = "Edmunds";
-										String strSecondTrim = "Second";
-
-										// check if trim contains quattro
-										if (vehicle.getTrim().contains("quattro")) {
-											strVehicleTrim = vehicle.getTrim().replace("quattro", "").toLowerCase()
-													.trim();
-											strSecondTrim = objDetails.getString("trim").replace("quattro ", "")
-													.toLowerCase();
-										}
-
-										// Check if trim contains PZEV.
-										if (vehicle.getTrim().contains("PZEV")) {
-											strVehicleTrim = vehicle.getTrim().replace("PZEV", "").toLowerCase().trim();
-											strSecondTrim = objDetails.getString("trim").replace("PZEV ", "")
-													.toLowerCase();
-										}
-
-										// Object creating if names are same
-										// after improvements.
-										if (strVehicleTrim.equals(strSecondTrim) && (objDetails.has("price") && !objDetails.get("price").equals(""))) {
-
-											Details details = getLemonFreeDetails(objDetails);
-											listDetails.add(details);
-										}
-									}
 								}
+							} else {
+								//
 							}
 						}
 					}
-					
-					List<Details> trueCar = TrueCarService.getListing(make, model);
-					
-					for (Details details : trueCar) {
-						if(Integer.parseInt(year)== details.getYearsOld()){
-							System.out.println("\t \t \t True Car Added.");
-							listDetails.add(details);
-						}
-					}
-					
-					vehicle.setDetail(listDetails);
-					
-					listVehicle.add(vehicle);
-					Thread.sleep(50);
 				}
+
+				List<Details> trueCar = TrueCarService.getListing(make, model);
+
+				for (Details details : trueCar) {
+					if (Integer.parseInt(year) == details.getYearsOld()) {
+						System.out.println("\t \t \t True Car Added.");
+						listDetails.add(details);
+					}
+				}
+
+				vehicle.setDetail(listDetails);
+
+				listVehicle.add(vehicle);
+				Thread.sleep(50);
+
 			}
 		} catch (Exception e) {
 			throw e;
@@ -253,7 +218,7 @@ public class GenericSource implements Source<Vehicle> {
 		return listVehicle;
 	}
 
-	//To Parse and Object details into JOSNObject.
+	// To Parse and Object details into JOSNObject.
 	private Details getLemonFreeDetails(JSONObject objDetails) {
 		Details details = new Details();
 		try {
