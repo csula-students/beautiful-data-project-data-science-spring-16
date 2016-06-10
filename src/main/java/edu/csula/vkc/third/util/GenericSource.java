@@ -49,8 +49,10 @@ public class GenericSource implements Source<Vehicle> {
 			currentMake++;
 
 		} catch (Exception e) {
-			System.out.print("Source : Generic Source");
+			System.out.print("Source : Generic Source ");
 			System.out.println(e.toString());
+			System.out.println(e.getMessage());
+			System.out.println(e.getStackTrace());
 		}
 
 		return listVehicle;
@@ -127,8 +129,11 @@ public class GenericSource implements Source<Vehicle> {
 					vehicle.setNoOfDoors(jsonStyle.has("numOfDoors") ? jsonStyle.getInt("numOfDoors") : 0);
 					vehicle.setTrim(jsonStyle.has("trim") ? jsonStyle.getString("trim") : null);
 					vehicle.setVehicleName(jsonStyle.has("name") ? jsonStyle.getString("name") : null);
+					
+					if(jsonStyle.has("price")){
 					vehicle.setTmv(jsonStyle.getJSONObject("price").has("usedTmvRetail")
 							? jsonStyle.getJSONObject("price").getInt("usedTmvRetail") : 0);
+					}
 					
 					if (jsonStyle.has("MPG")) {
 						vehicle.setMilage(new MPG(
@@ -231,7 +236,7 @@ public class GenericSource implements Source<Vehicle> {
 					
 					for (Details details : trueCar) {
 						if(Integer.parseInt(year)== details.getYearsOld()){
-							System.out.println("\t \t \t True Car Added." + jsonStyle.getString("trim"));
+							System.out.println("\t \t \t True Car Added.");
 							listDetails.add(details);
 						}
 					}

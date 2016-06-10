@@ -24,7 +24,7 @@ public class VehicleCollector implements Collector<Vehicle, Vehicle>{
 		System.out.println("Original Count : "+src.size());
 		
 		for (Vehicle vehicle : src) {
-			if(vehicle.getOriginalPrice()==0){
+			if(vehicle.getOriginalPrice()==0 || vehicle.getTmv()==0){
 				listRemoveVehicle.add(vehicle);
 			}
 		}
