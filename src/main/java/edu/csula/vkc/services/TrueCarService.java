@@ -94,7 +94,7 @@ public class TrueCarService {
 						lstDetails.add(details);
 					}
 					// System.out.println(i);
-					Thread.sleep(100);
+					Thread.sleep(50);
 				}
 			} else {
 				// Code if the request has been already made.
