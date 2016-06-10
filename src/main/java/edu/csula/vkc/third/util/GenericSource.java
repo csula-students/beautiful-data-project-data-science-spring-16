@@ -159,7 +159,7 @@ public class GenericSource implements Source<Vehicle> {
 				}
 
 				// Just for checking.
-				System.out.println("\t \t \t " + vehicle.getTrim());
+				//System.out.println("\t \t \t " + vehicle.getTrim());
 
 				if (jsonStyle.has("transmission")) {
 					vehicle.setTransmission(jsonStyle.getJSONObject("transmission").has("transmissionType")
@@ -201,7 +201,7 @@ public class GenericSource implements Source<Vehicle> {
 
 				for (Details details : trueCar) {
 					if (Integer.parseInt(year) == details.getYearsOld()) {
-						System.out.println("\t \t \t True Car Added.");
+						System.out.println("\t \t \t " + details.getSource() + " : " + details.getDetailId());
 						listDetails.add(details);
 					}
 				}
@@ -230,7 +230,7 @@ public class GenericSource implements Source<Vehicle> {
 			details.setSource("LemonFree");
 			details.setYearsOld(0);
 
-			System.out.println("\t \t \t " + details.getSource() + " : " + objDetails.getString("trim"));
+			System.out.println("\t \t \t " + details.getSource() + " : " + details.getDetailId());
 		} catch (Exception ex) {
 			throw ex;
 		}
