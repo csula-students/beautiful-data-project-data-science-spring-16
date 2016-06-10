@@ -211,7 +211,6 @@ public class GenericSource implements Source<Vehicle> {
 					vehicle.setDetail(listDetails);
 
 					listVehicle.add(vehicle);
-					Thread.sleep(50);
 				}
 			}
 		} catch (Exception e) {
