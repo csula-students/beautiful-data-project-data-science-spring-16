@@ -18,7 +18,7 @@ public class TrueCarService {
 
 		try {
 
-			if (!makeName.equals(strMake) && !modelName.equals(strModel)) {
+			if (!makeName.equals(strMake) || !modelName.equals(strModel)) {
 
 				// System.out.println("Executing If.");
 				strMake = makeName;
