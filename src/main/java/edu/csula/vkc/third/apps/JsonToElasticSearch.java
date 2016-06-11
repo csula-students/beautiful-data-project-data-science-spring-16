@@ -169,7 +169,7 @@ public class JsonToElasticSearch {
 						System.out.println("Facing error while importing data to elastic search");
 						failure.printStackTrace();
 					}
-				}).setBulkActions(5).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
+				}).setBulkActions(10).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
 						.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
 						.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
 
