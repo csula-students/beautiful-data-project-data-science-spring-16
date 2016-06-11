@@ -91,7 +91,5 @@ public class MongoToElastic {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }
