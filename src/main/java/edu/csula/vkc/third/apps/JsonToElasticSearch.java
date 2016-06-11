@@ -142,7 +142,7 @@ public class JsonToElasticSearch {
 		// as usual process to connect to data source, we will need to set up
 		// node and client// to read CSV file from the resource folder
 
-		File dir = new File("C:/Users/chitt_000/Documents/data-science-2016/companydata/");
+		File dir = new File("C:/Users/chitt_000/Documents/data-science-2016/CarData/");
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			for (File jsonFile : directoryListing) {
