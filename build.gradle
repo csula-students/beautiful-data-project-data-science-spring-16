@@ -34,6 +34,7 @@ dependencies {
   compile 'org.twitter4j:twitter4j-core:4.0.4'
   compile 'org.elasticsearch:elasticsearch:2.2.0'
   compile 'com.google.code.gson:gson:2.6.2'
+  compile group: 'io.searchbox', name: 'jest', version: '2.0.2'
   
   //Self Added 
   compile 'org.apache.commons:commons-csv:1.2'
@@ -53,6 +54,12 @@ task hello(type: JavaExec) {
 
   main = 'edu.csula.datascience.examples.Hello'
 }
+
+task remoteEs(type: JavaExec) {
+   classpath = sourceSets.main.runtimeClasspath
+ 
+   main = 'edu.csula.datascience.examples.JestExampleApp'
+ }
 
 task token(type: JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
