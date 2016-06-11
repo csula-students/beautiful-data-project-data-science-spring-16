@@ -128,8 +128,8 @@ public class JsonToElasticSearch {
 	private final static String typeName = "vehicle";
 
 	public static void main(String[] args) throws URISyntaxException, IOException {
-		Node node = nodeBuilder()
-				.settings(Settings.builder().put("cluster.name", "elastic-vehicle").put("path.home", "elasticsearch-data"))
+		Node node = nodeBuilder().settings(
+				Settings.builder().put("cluster.name", "elastic-vehicle").put("path.home", "elasticsearch-data"))
 				.node();
 		Client client = node.client();
 
@@ -141,7 +141,7 @@ public class JsonToElasticSearch {
 
 		// as usual process to connect to data source, we will need to set up
 		// node and client// to read CSV file from the resource folder
-		String fname = "C:/Users/chitt_000/Documents/data-science-2016/chevrolet.json";
+		String fname = "C:/Users/vidus/Documents/data-science-2016/bmw.json";
 		File jsonFile = new File(fname);
 
 		// create bulk processor
@@ -172,7 +172,8 @@ public class JsonToElasticSearch {
 			for (int i = 0; i < arrayFile.size(); i++) {
 
 				JsonObject objCurrent = (JsonObject) arrayFile.get(i);
-				if (!(Integer.parseInt(objCurrent.get("originalPrice").toString().trim()) < 100)) {
+				if ((Integer.parseInt(objCurrent.get("minOriginalPrice").toString().trim()) != 0)
+						&& (Integer.parseInt(objCurrent.get("maxOriginalPrice").toString().trim()) != 0)) {
 					System.out.println(arrayFile.get(i).toString());
 
 					bulkProcessor.add(new IndexRequest(indexName, typeName, objCurrent.get("id").getAsString())
