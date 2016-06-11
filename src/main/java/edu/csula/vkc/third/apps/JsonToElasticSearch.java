@@ -141,71 +141,83 @@ public class JsonToElasticSearch {
 
 		// as usual process to connect to data source, we will need to set up
 		// node and client// to read CSV file from the resource folder
-		String fname = "C:/Users/vidus/Documents/data-science-2016/bmw.json";
-		File jsonFile = new File(fname);
 
-		// create bulk processor
-		BulkProcessor bulkProcessor = BulkProcessor.builder(client, new BulkProcessor.Listener() {
-			@Override
-			public void beforeBulk(long executionId, BulkRequest request) {
-			}
+		File dir = new File("C:/Users/chitt_000/Documents/data-science-2016/companydata/");
+		File[] directoryListing = dir.listFiles();
+		if (directoryListing != null) {
+			for (File jsonFile : directoryListing) {
 
-			@Override
-			public void afterBulk(long executionId, BulkRequest request, BulkResponse response) {
-				System.out.println(executionId);
-			}
+				// String fname =
+				// "C:/Users/vidus/Documents/data-science-2016/bmw.json";
+				// File jsonFile = new File(fname);
+				
+				//System.out.println(jsonFile.getName());
 
-			@Override
-			public void afterBulk(long executionId, BulkRequest request, Throwable failure) {
-				System.out.println("Facing error while importing data to elastic search");
-				failure.printStackTrace();
-			}
-		}).setBulkActions(50).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
-				.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
-				.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
+				// create bulk processor
+				BulkProcessor bulkProcessor = BulkProcessor.builder(client, new BulkProcessor.Listener() {
+					@Override
+					public void beforeBulk(long executionId, BulkRequest request) {
+					}
 
-		try {
-			JsonParser parser = new JsonParser();
-			Object obj = parser.parse(new FileReader(jsonFile));
-			JsonArray arrayFile = (JsonArray) obj;
+					@Override
+					public void afterBulk(long executionId, BulkRequest request, BulkResponse response) {
+						System.out.println(executionId);
+					}
 
-			for (int i = 0; i < arrayFile.size(); i++) {
+					@Override
+					public void afterBulk(long executionId, BulkRequest request, Throwable failure) {
+						System.out.println("Facing error while importing data to elastic search");
+						failure.printStackTrace();
+					}
+				}).setBulkActions(50).setBulkSize(new ByteSizeValue(1, ByteSizeUnit.GB))
+						.setFlushInterval(TimeValue.timeValueSeconds(5)).setConcurrentRequests(1)
+						.setBackoffPolicy(BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)).build();
 
-				JsonObject objCurrent = (JsonObject) arrayFile.get(i);
-				if ((Integer.parseInt(objCurrent.get("minOriginalPrice").toString().trim()) != 0)
-						&& (Integer.parseInt(objCurrent.get("maxOriginalPrice").toString().trim()) != 0)) {
-					System.out.println(arrayFile.get(i).toString());
+				try {
+					JsonParser parser = new JsonParser();
+					Object obj = parser.parse(new FileReader(jsonFile));
+					JsonArray arrayFile = (JsonArray) obj;
 
-					bulkProcessor.add(new IndexRequest(indexName, typeName, objCurrent.get("id").getAsString())
-							.source(arrayFile.get(i).toString()));
+					for (int i = 0; i < arrayFile.size(); i++) {
+
+						JsonObject objCurrent = (JsonObject) arrayFile.get(i);
+						if ((Integer.parseInt(objCurrent.get("minOriginalPrice").toString().trim()) != 0)
+								&& (Integer.parseInt(objCurrent.get("maxOriginalPrice").toString().trim()) != 0)) {
+							System.out.println(arrayFile.get(i).toString());
+
+							bulkProcessor.add(new IndexRequest(indexName, typeName, objCurrent.get("id").getAsString())
+									.source(arrayFile.get(i).toString()));
+						}
+					}
+					// System.out.println(arrayFile.toString());
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
+
+				/**
+				 * Structured search
+				 */
+
+				/**
+				 * AGGREGATION
+				 */
+				// SearchResponse sr = node.client().prepareSearch(indexName)
+				// .setTypes(typeName)
+				// .setQuery(QueryBuilders.matchAllQuery())
+				// .addAggregation(
+				// AggregationBuilders.terms("stateAgg").field("makeName")
+				// .size(Integer.MAX_VALUE)
+				// )
+				// .execute().actionGet();
+				//
+				// // Get your facet results
+				// Terms agg1 = sr.getAggregations().get("stateAgg");
+				//
+				// for (Terms.Bucket bucket: agg1.getBuckets()) {
+				// System.out.println(bucket.getKey() + ": " +
+				// bucket.getDocCount());
+				// }
 			}
-			// System.out.println(arrayFile.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
-		/**
-		 * Structured search
-		 */
-
-		/**
-		 * AGGREGATION
-		 */
-		// SearchResponse sr = node.client().prepareSearch(indexName)
-		// .setTypes(typeName)
-		// .setQuery(QueryBuilders.matchAllQuery())
-		// .addAggregation(
-		// AggregationBuilders.terms("stateAgg").field("makeName")
-		// .size(Integer.MAX_VALUE)
-		// )
-		// .execute().actionGet();
-		//
-		// // Get your facet results
-		// Terms agg1 = sr.getAggregations().get("stateAgg");
-		//
-		// for (Terms.Bucket bucket: agg1.getBuckets()) {
-		// System.out.println(bucket.getKey() + ": " + bucket.getDocCount());
-		// }
 	}
 }
