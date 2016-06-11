@@ -34,6 +34,7 @@ public class JsonToMongo {
 
 			// select collection by name `tweets`
 			collection = database.getCollection("collection");
+			List<Document> documents = Lists.newArrayList();
 
 			// For Each json File.
 			File dir = new File("C:/Users/chitt_000/Documents/data-science-2016/CarData/");
@@ -47,8 +48,6 @@ public class JsonToMongo {
 
 					Collection<Vehicle> vehicles = Lists.newArrayList();
 					ObjectMapper mapper = new ObjectMapper();
-
-					int count = 0;
 
 					// for each record, we will insert data into Elastic Search
 					// parser.forEach(record -> {
@@ -64,15 +63,12 @@ public class JsonToMongo {
 						}
 					}
 
-					List<Document> documents = Lists.newArrayList();
-
 					for (Vehicle veh : vehicles) {
 						documents.add(Document.parse(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(veh)));
 					}
-
-					collection.insertMany(documents);
 				}
 			}
+			collection.insertMany(documents);
 		} catch (
 
 		Exception e) {
