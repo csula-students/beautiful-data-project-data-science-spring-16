@@ -3,4 +3,11 @@
 build/
 *.env
 
+.settings/*
+.build
+.project
+.classpath
+
+/elasticsearch-data
+
 /bin/
